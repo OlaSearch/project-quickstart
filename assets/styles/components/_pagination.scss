@@ -1,0 +1,70 @@
+.ola-pagination{	
+	padding: 1em 0;	
+
+	@include media(tablet){
+		text-align: center;
+	}
+}
+
+	.ola-page{
+		display: inline-block;		
+		padding: 5px 10px;
+		vertical-align: top;
+		text-decoration: none;
+		vertical-align: middle;
+		display: none;
+		background: none;
+		border: none;
+		color: $link-color;
+
+		@include media(tablet){
+			display: inline-block;
+		}
+	}
+
+	.ola-page-ellipsis{
+		color: $base-color;
+	}
+
+	/**
+	 * Current page
+	 */
+	
+	.ola-page-current{
+		background: #eee;
+	}
+
+	/**
+	 * Previous
+	 */
+	
+	.ola-page-previous{
+		display: inline-block;
+		&:before{
+			@extend .ion;
+			content: "\f3d2";
+			margin-right: 0.5em;
+		}
+		margin-right: 1em;
+	}
+
+	.ola-page-next{
+		float: right;
+		margin-left: 1em;
+		display: inline-block;
+		@include media(tablet){
+			float: none;
+		}
+		&:after{
+			@extend .ion;
+			content: "\f3d3";
+			margin-left: 0.5em;
+		}
+	}
+
+
+/* Disable */
+
+.ola-page-disabled{
+	opacity: 0.1;
+}

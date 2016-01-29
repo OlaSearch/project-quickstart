@@ -1,0 +1,81 @@
+/**
+ * Container
+ */
+
+.ola-search-container{
+
+	
+	padding: 1em;
+	position: relative;
+	overflow: hidden;
+
+	@include media(desktop){
+		display: table;
+		table-layout: fixed;
+		width:100%;
+		overflow: visible;
+	}
+}
+
+/**
+ * Sidebar
+ */
+
+.ola-sidebar{
+
+	
+	position: absolute;
+	z-index: 13;
+	right: 0;
+	top: 0;
+	width: 300px;
+	background: #fff;
+	padding: 1em;
+	transform: translate3d(300px, 0, 0);
+	transition: all 0.2s cubic-bezier(.17,.67,.83,.67);
+
+
+	.ola-sidebar-open &{
+		transform: translate3d(0%, 0, 0);
+		box-shadow: $base-box-shadow;
+		// padding-right: 15%;
+	}
+	
+	@include media(desktop){
+		display: table-cell;
+		padding-top: 1.75em;
+		padding-right: 1.5em;
+		width: 300px;	
+		vertical-align: top;
+		transform: translate3d(0, 0, 0);
+		position: relative;
+		padding-left: 0;
+		z-index: 0;
+	}
+}
+
+/**
+ * Results container
+ */
+
+.ola-results-container{
+	
+	
+
+	@include media(desktop){
+		padding-top: 1em;
+		display: table-cell;
+		vertical-align: top;
+	}
+}
+
+
+
+/**
+ * Content
+ */
+
+#content, html, body, .ola-page-container, .ola-guide{
+	height: 100%;
+	min-height: 100%;
+}

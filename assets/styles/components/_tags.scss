@@ -1,0 +1,112 @@
+.ola-facet-tag{
+	background: $brand-color;
+	color: #fff;
+	padding: 5px 0.8em;
+	display: inline-block;
+	border-radius: 3px;
+	font-size: 14px;
+	padding-right: 40px;
+	position: relative;
+	margin-right: 0.5em;
+	margin-bottom: 0.5em;
+	
+}
+
+/**
+ * Remove link
+ */
+
+.ola-facet-tag-remove{
+	color: #fff;
+	width: 26px;
+	text-align: center;
+	font-size: 24px;
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 0;
+	border-radius: 0 3px 3px 0;
+	line-height: 28px;
+	border: none;
+	background: transparent;
+	overflow: hidden;
+
+	&:hover{
+		background-color: darken($brand-color, 10%);
+	}
+
+	&:before{
+		@extend .ion;
+		content: "\f404";
+	}
+}
+
+
+/**
+ * Facet count
+ */
+
+.ola-search-facet-count{
+	background-color: #eee;
+	padding: 2px 8px;
+	border-radius: 10px;
+	font-size: 12px;	
+	color: #555;
+}
+
+/**
+ * Tag Group
+ */
+
+.ola-facet-tags{
+	padding-bottom: 1em;
+	position: relative;
+}
+
+	.ola-facet-tags-group{
+		display: inline-block;
+		vertical-align: top;
+		font-size: 14px;
+	}
+
+	.ola-facet-tags-group__elevate{
+		position: relative;
+		z-index: 13;
+	}
+
+
+/**
+ * Tooltip
+ */
+
+.ola-tooltip-content{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background: white;
+	border-radius: 5px;
+	padding: 1em;
+	z-index: 11;
+	width: 300px;
+
+	&:after{
+		bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(213, 196, 194, 0);
+	border-bottom-color: #fff;
+	border-width: 10px;
+	margin-left: -10px;
+	}
+
+	p{
+		margin-bottom: 10px;
+	}
+}

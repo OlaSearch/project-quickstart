@@ -1,0 +1,75 @@
+$base-ui-color: #ddd;
+/**
+ * Text input
+ */
+
+.ola-text-input, .ola-textarea{
+	border: 1px darken($base-ui-color,10%) solid;
+	padding: 0.8em 0.6em;
+	border-radius: 3px;
+	width: 100%;
+
+	&:focus{
+		outline: none;
+		border-color: #1589ee;
+		box-shadow: 0 0 3px #0070D2;
+	}
+	
+}
+
+
+/**
+ * Rounded
+ */
+
+.ola-text-input-round{
+	border-radius: 5px;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 1.05em;
+	width: 100%;	
+}
+
+
+/**
+ * Search button
+ */
+
+.ola-search-button{
+	
+}
+
+/**
+ * Search form container
+ */
+
+.ola-search-form-container{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+
+	color: $base-color;
+	
+	@include media(tablet){
+		width: 600px;
+	}
+
+
+	.ola-header-section &{
+
+		@include media(tabletonly){
+			// margin-left: 2em;
+		}
+	}
+}
+
+
+/**
+ * Checkbox
+ */
+
+.ola-checkbox{
+	input{
+		margin-right: 5px;
+	}
+}

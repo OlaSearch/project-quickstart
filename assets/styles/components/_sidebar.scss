@@ -1,0 +1,147 @@
+/**
+ * Facet container
+ */
+
+.ola-facet-list{
+	a, .ola-checkbox-label{
+		display: block;
+		clear: both;
+		font-size: 14px;
+		padding: 3px 0;
+		cursor: pointer;
+	}
+
+	.ola-search-facet-count{
+		float: right;
+	}
+
+	.ola-search-facet-name{
+		white-space: nowrap;
+		display: block;
+		padding-right: 1em;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+}
+
+	
+
+
+/**
+ * Title
+ */
+
+.ola-facet-title{
+	font-size: 20px;
+	font-weight: normal;
+	margin-bottom: 10px;
+	cursor: pointer;
+
+	&:before{
+		@extend .ion;
+		content: "\f463";
+		margin-right: 0.25em;
+	}
+
+	.ola-facet-collapsed &{
+		&:before{
+			content: "\f48a";
+		}
+	}
+}
+
+
+/**
+ * Facet
+ */
+
+.ola-facet{
+	padding-bottom: 2em;
+
+	&.ola-facet-collapsed{
+
+		padding-bottom: 1em;
+
+		.ola-facet-wrapper{
+			display: none;
+		}
+	}
+}
+
+
+/**
+ * Input
+ */
+
+.ola-facet-filter-input{
+	width: 100%;
+	// border-radius: 20px;
+	margin-bottom: 1em;
+	font-size: 14px;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+/**
+ * Filter
+ */
+
+.ola-link-open-filter{
+	float: right;
+	background: url(../images/funnel.png) top left no-repeat;
+	background-size: cover;
+	width: 25px;
+	height: 25px;
+	background-size: contain;
+	display: block;
+	opacity: 0.6;
+	margin-top: 6px;
+	border: none;
+	padding: 0;
+	text-align: center;
+
+
+	span{
+		display: none;
+	}
+	@include media(desktop){
+		display: none;
+	}
+}
+
+
+
+/**
+ * Facet overflow contianer
+ */
+
+.ola-facet-scroll-list{
+	max-height: 400px;
+	overflow: auto;
+	margin-bottom: 0.25em;
+}
+
+
+/* Show more link */
+
+.ola-link-show-more{	
+	
+}
+
+
+/**
+ * Ola facet links
+ */
+
+.ola-facet-link{
+	background: none;
+	padding: 0;
+	color: $link-color;
+	display: block;
+	border: none;
+	@include font-size(14px, false);
+	width: 100%;
+	text-align: left;
+	padding: 3px 0;
+	clear: both;
+}

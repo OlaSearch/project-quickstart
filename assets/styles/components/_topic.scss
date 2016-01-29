@@ -1,0 +1,103 @@
+.ola-topic-head{
+	background: #eee;
+	padding: 2em 1em;
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+
+	@include media(desktop){
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+}
+
+	.ola-topic-table{
+		@include media(tablet){
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+		}
+	}
+
+	.ola-topic-image{
+		
+		
+		@include media(tablet){
+			display: table-cell;
+			vertical-align: top;
+			width: 180px;
+			padding-right: 1em;
+		}		
+
+		
+	}
+
+	.ola-topic-content{
+		
+		padding-right: 2em;		
+
+		@include media(tablet){
+			display: table-cell;
+			vertical-align: top;
+		}
+	}
+
+	.ola-topic-details{
+		
+		padding-right: 2em;		
+
+		@include media(tablet){
+			display: table-cell;
+			vertical-align: top;
+		}
+	}
+
+	.ola-topic-more{
+		@include media(tablet){
+			display: table-cell;
+			vertical-align: top;
+		}
+	}
+
+/**
+ * Crumbs
+ */
+
+.ola-topic-crumbs{
+	background: #eee;
+	padding: 1em 1em 0 1em;
+
+	@include media(desktop){
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+}
+
+/**
+ * More like this
+ */
+
+.ola-more-like-this{
+	padding: 2em 1em;
+
+	@include media(desktop){
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+}
+
+	/**
+	 * Grid item
+	 */
+	
+	.ola-grid-item{		
+		background-color: transparent;		
+		
+		@include media(tablet){
+			padding-right: 2em;
+			float: left;
+			width: 50%;
+			height: 310px;		
+		}
+	}

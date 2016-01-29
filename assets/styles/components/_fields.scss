@@ -1,0 +1,36 @@
+.ola-field-title{
+	
+	margin-bottom: 5px;
+	a{
+		text-decoration: none;
+	}
+
+
+	@include font-size(16px, false);
+
+	@include media(tablet){
+		@include font-size(20px, false);
+	}
+}
+
+
+/**
+ * Hide view trailer on mobile
+ */
+
+.ola-view-trailer, .ola-field-summary{
+	display: none;
+
+	@include media(tablet){
+		display: block;
+	}
+}
+
+
+/**
+ * Summary
+ */
+
+.ola-field-summary{
+	padding-bottom: 1em;
+}

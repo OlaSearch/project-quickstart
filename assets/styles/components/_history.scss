@@ -1,0 +1,25 @@
+.ola-bookmarks-container{
+	
+}
+
+	/**
+	 * Module
+	 */
+	
+	.ola-module{
+		background-color: #fff;
+		box-shadow: $base-box-shadow;
+		text-align: left;
+	}
+
+
+	.ola-module-history-time{
+		display: block;
+		font-size: 12px;
+		color: $color-grey;
+
+		@include media(tablet){
+			float: right;
+			margin-left: 1em;
+		}
+	}

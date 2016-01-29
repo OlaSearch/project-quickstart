@@ -1,0 +1,57 @@
+.ola-panel{
+	
+	border: 1px #b1dafc solid;
+	border-radius: 5px;	
+	margin-bottom: 2em;
+	background: white;
+    color: $base-color;
+	border-color: darken($brand-color, 20%);	
+	
+	&.ola-active{
+		border-color: darken($brand-color, 20%);	
+	}
+}
+
+	.ola-panel-title{		
+		background-color: #E2F1FE;
+		padding: 1em;
+		position: relative;
+		padding-left: 60px;
+		flex-wrap: bold;
+		border-radius: 5px 5px 0 0;
+		border-bottom: 1px darken(#E2F1FE, 20%) solid;
+
+		.ola-active &{
+			background-color: #FFF7F0;
+			border-bottom-color: darken(#FFF7F0, 20%);
+		}
+	}
+
+	.ola-panel-number{
+		position: absolute;
+		left: 1em;
+		top: 10px;
+		
+		color: #fff;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		display: inline-block;
+		border-radius: 50%;
+		text-align: center;
+
+		background-color: #006eab;
+
+		.ola-active &{
+			background-color: #B25A00;
+		}
+	}
+
+
+/**
+ * Body
+ */
+
+.ola-panel-body{
+	padding: 1em;
+}

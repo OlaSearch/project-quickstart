@@ -1,0 +1,237 @@
+a{
+	color: $link-color;
+	cursor: pointer;
+}
+
+
+/**
+ * Edit link
+ */
+
+.ola-link-edit{
+
+	cursor: pointer;
+	display: block;
+	padding-bottom: 1em;
+	&:before{
+		@extend .ion;
+		content: "\f2bf";
+		margin-right: 0.5em;
+	}
+	margin-left: 1em;
+}
+
+
+/**
+ * Bookmark link
+ */
+
+.ola-link-bookmark, .ola-link-bookmark-action{
+	font-size: 26px;
+	color: darken($color-grey, 40%);
+	background: none;
+	border: none;
+	padding: 0;
+	&:before{
+		@extend .ion;
+		content: "\f442";		
+	}
+
+	.ola-snippet &{
+		&:before{
+			vertical-align: top;
+		}
+	}
+}
+
+	/**
+	 * Actions
+	 */
+	
+	.ola-link-bookmark-action{
+
+		span{
+			display: none;
+		}
+
+		&.action-remove{
+			&:before{
+				content: "\f443";
+			}
+		}
+	}
+
+
+/**
+ * Show more link
+ */
+
+.ola-link-show-more{
+	background: none;
+	border: none;
+	padding: 0;
+	color: $link-color;
+	@include font-size(14px, false);
+}
+
+/**
+ * History link
+ */
+
+.ola-link-history{
+	font-size: 24px;
+	color: darken($color-grey, 40%);
+	&:before{
+		@extend .ion;
+		content: "\f402";
+	}
+}
+
+/**
+ * Load more
+ */
+
+.ola-link-load-more{
+	color: $link-color;
+	background: none;
+	border: none;
+	padding: 10px;
+	width: 100%;	
+}
+
+/**
+ * Clear all
+ */
+
+.ola-link-clear-all-filters{
+	padding: 0;
+	border: none;
+	background: none;
+	color: $link-color;
+	display: block;
+	margin-top: -0.5em;
+	margin-bottom: 1em;
+}
+
+/**
+ * Clear icon
+ */
+
+.ola-module-clear{
+	font-size: 24px;
+	color: $base-color;
+	background: none;
+	border: none;
+	&:before{
+		@extend .ion;
+		content: "\f404";
+	}
+}
+
+/**
+ * Fake button
+ */
+
+.ola-fake-button{
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+/**
+ * View trailer
+ */
+
+.ola-btn-trailer{
+	color: $link-color;
+}
+
+
+/**
+ * Speech
+ */
+
+.ola-link-speech{
+
+	color: $base-color;
+	position: absolute;
+	right: 130px;
+	top: 0;
+	font-size: 26px;
+	width: 30px;
+	top: 0;
+	line-height: 52px;
+	text-align: center;
+
+	&:before{
+		@extend .ion;
+		content: "\f461";
+	}
+	
+	@include media(tablet){
+		right: 140px;
+	}
+	
+	.ola-autosuggest &{
+		right: 90px;
+		
+		@include media(tablet){
+			right: 100px;
+		}
+	}
+}
+
+	.ola-link-speech-stop{
+		font-size: 16px;
+		line-height: 53px;
+		&:before{
+			content: "\f21b";
+			color: red;
+		}
+		-webkit-animation-duration: 1s;
+		  animation-duration: 1s;
+		  -webkit-animation-fill-mode: both;
+		  animation-fill-mode: both;
+		  -webkit-animation-name: pulse;
+  			animation-name: pulse;
+  			-webkit-animation-iteration-count: infinite;
+  		animation-iteration-count: infinite;
+	}
+
+	/*
+	 * Pulse animation
+	*/
+	 
+	@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.25, 1.25, 1.25);
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.25, 1.25, 1.25);
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}

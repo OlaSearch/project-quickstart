@@ -1,0 +1,13 @@
+.ola-form-container{
+	background: #eee;
+	padding: 1em;
+	text-align: center;
+}
+
+.ola-title-container{
+	padding-bottom: 1em;
+
+	@include media(tablet){
+		padding-bottom: 0.5em;
+	}
+}

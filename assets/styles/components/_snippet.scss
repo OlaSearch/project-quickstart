@@ -1,0 +1,90 @@
+.ola-snippet{
+	display: table;
+	table-layout: fixed;
+	width: 100%;	
+	padding-top: 1em;
+	padding-bottom: 1em;
+	
+	font-size: 14px;	
+	// background: #eee;
+	margin-bottom: 1px;
+	border-bottom: 1px $base-ui-color solid;
+
+	@include media(tablet){
+		padding: 1em;
+		margin-bottom: 1em;
+		border-bottom: none;
+		background: #eee;
+	}
+
+	.field-summary{
+		display: none;
+
+		@include media(tablet){
+			display: block;
+		}
+	}
+}
+
+	.ola-snippet-image{
+		
+			display: table-cell;	
+			width: 80px;
+			vertical-align: top;	
+
+			@include media(tablet){
+				width: 160px;
+			}		
+	}
+
+	.ola-snippet-content{		
+		
+		
+			display: table-cell;	
+			vertical-align: top;	
+			padding-left: 1em;
+
+			@include media(tablet){
+				padding-left: 1.5em;
+			}
+		
+	}
+
+
+/**
+ * Thumbnails
+ */
+
+.ola-snippet-image-desktop{
+	display: none;
+	@include media(tablet){
+		display: block;
+		margin-bottom: 1em;
+	}
+}
+
+	.ola-snippet-image-mobile{
+		width: 100%;		
+		@include media(tablet){
+			display: none;
+		}
+	}
+
+/**
+ * Snippet actions
+ */
+
+.ola-snippet-actions{
+	float: right;
+	margin-left: 1em;
+}
+
+
+/**
+ * Highlighted text
+ */
+
+.ola-highlight{
+	background-color: #ffc;
+	font-style: normal;
+}

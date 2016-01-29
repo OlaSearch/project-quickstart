@@ -1,0 +1,56 @@
+$link-color: #0070d2;
+$font-heading: 'Arimo', sans-serif;
+$color-grey: #999;
+
+/*------------------------------------*\
+    $BASE
+\*------------------------------------*/
+
+
+$base-font-family  : "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size    : 16px;
+$base-line-height  : 24px;
+$base-spacing-unit : $base-line-height;
+$base-spacing-unit-large : $base-line-height;
+
+//$base-space: 20px;
+$half-spacing-unit : $base-spacing-unit / 2!default;
+$line-height-ratio : $base-line-height / $base-font-size;
+
+$base-radius       : 3px;
+$base-box-shadow   : 0 0px 6px 0px rgba(0,0,0,0.6);
+
+
+$base-color    : #333;
+$base-ui-color : #d8d8d8;
+$brand-color   : #5476f8;
+
+/*------------------------------------*\
+    $GRID SETTINGS
+\*------------------------------------*/
+
+$grid-columns : 12;
+$grid-spacing : 30px;
+$site-width   : 100%;
+$desktop-width: 960px;
+$max-width: $site-width;
+
+
+/*------------------------------------*\
+    $BREAKPOINTS
+\*------------------------------------*/
+
+/* 0 - 480 (mobile), 480+ (medium), 600+ (tablet), 960+ (desktop), 1300+ (wide) */
+$screen: 'only screen';
+
+$breakpoints: (
+    mobile '#{$screen} and (max-width: 480px)',
+    mobileUp '#{$screen} and (min-width: 481px)',
+    mediumOnly '#{$screen} and (min-width: 480px) and (max-width: 600px)',
+    medium '#{$screen} and (min-width: 601px)',
+    phablet '#{$screen} and (max-width: 768px)',
+    tablet '#{$screen} and (min-width: 768px)',
+    tabletonly '#{$screen} and (min-width: 600px) and (max-width: #{$desktop-width})',
+    desktop '#{$screen} and (min-width: #{$desktop-width})',
+    wide '#{$screen} and (min-width: 1100px)'
+);
