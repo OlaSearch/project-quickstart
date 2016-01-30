@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OlaSearch from 'olasearch';
-import { parser, queryBuilder, http } from 'olasearch-elasticsearch-adapter';
+import { parser, queryBuilder, http } from 'olasearch-solr-adapter';
+import SearchContainer from './containers/Search';
+import config from './config.movies';
 
-import config from './config.elasticsearch';
-
-var {
+import {
     Search,
     AutoSuggest,
     Guide,
     OlaProvider,
     Actions,
-    InstantSearch
-} = OlaSearch;
-
+    InstantSearch,
+    createStore,
+    olaState
+} from 'olasearch'
 
 var _root = document.getElementById('root'),
     _guide = document.getElementById('guide'),
@@ -26,15 +26,37 @@ let options = {
     config, 
     parser: new parser( config ), 
     queryBuilder: new queryBuilder( config ),
-    searchService: new http( config )
+    searchService: new http( config ), 
+    reducers: olaState
 };
 
+/* Create store */
+
+let store = createStore ( options );
 
 if(_root){
     ReactDOM.render(
-        <OlaProvider { ...options }>
+        <OlaProvider { ...options } store = { store } >
             <Search />
         </OlaProvider>
         , _root
+    );
+}
+
+if(_guide){
+    ReactDOM.render(
+        <OlaProvider { ...options } store = { store }>            
+            <Guide name="banner" />           
+        </OlaProvider>
+        , _guide
+    );
+}
+
+if(_autosuggest){
+    ReactDOM.render(
+        <OlaProvider { ...options } store = { store }>            
+            <AutoSuggest />         
+        </OlaProvider>
+        , _autosuggest
     );
 }

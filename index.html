@@ -1,14 +1,66 @@
 <!doctype html>
-<html>
+<html class="ola-html-guide">
   <head>
-    <title>OlaSearch Boilerplate</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <title>OlaSearch Guide</title>
+    <link rel="stylesheet" href="assets/styles/main.css">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,600' rel='stylesheet' type='text/css'>
+    <style>
+      .ola-html-guide{
+        background: #5476f8;
+      }
+      .show-quick-search .guide-container{
+        display: none;
+      }
+
+      .show-guide .autosuggest-container{
+        display: none;
+      }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="show-quick-search">
+    <div id="content" class="ola-guide">
+      <div class="ola-guide-body">
+        <a href="#/" class="ola-logo"></a>
+        <h2 class="ola-tagline">Search a movie database</h2>
+        <div class="ola-guide-section">
+            
+            <div class="guide-container">
+              <h3 class="ola-guide-section-title">Step-by-step guide</h3>
+            
+              <div id='guide'></div>
+            </div>
+
+            <div class="autosuggest-container">
+
+            <h3 class="ola-guide-section-title">Quick search</h3>
+            <div id='autosuggest'></div>
+
+            </div>
+
+          </div>
+      </div>
+
+      <div class="ola-guide-row">
+        <a id="show-quick-search">Quick Search</a>
+        <a id="show-guide">Step by step guide</a>
+      </div>
+    </div>
+            
     <script src="/static/bundle.js"></script>
+    <script type="text/javascript">
+      
+      document.getElementById('show-quick-search').addEventListener('click', function(){        
+        document.body.classList.remove('show-guide')
+        document.body.classList.add('show-quick-search')
+      })
+
+      document.getElementById('show-guide').addEventListener('click', function(){        
+        document.body.classList.remove('show-quick-search')
+        document.body.classList.add('show-guide')
+      })
+
+    </script>
   </body>
 </html>
