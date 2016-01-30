@@ -10,7 +10,8 @@ var {
     AutoSuggest,
     Guide,
     OlaProvider,
-    Actions
+    Actions,
+    InstantSearch
 } = OlaSearch;
 
 
@@ -25,9 +26,8 @@ let options = {
     config, 
     parser: new parser( config ), 
     queryBuilder: new queryBuilder( config ),
-    searchService: new http( config ),
+    searchService: new http( config )
 };
-
 
 
 if(_root){

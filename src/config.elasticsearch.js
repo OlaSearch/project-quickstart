@@ -1,3 +1,5 @@
+import customSnippet from './components/customSnippet';
+
 module.exports = {      
     array_separator: null,
     infiniteScroll: false,
@@ -16,7 +18,17 @@ module.exports = {
     api: {
         search: 'http://52.76.115.91:9200/scb/_search',
         suggest: 'http://52.76.115.91:9200/scb/_search' 
-    },      
+    },
+    snippetRules: [
+        {
+            rules: {
+                content_type: "help-centre",
+                channel_type: "Swift Code",
+            },
+            template: customSnippet
+        }
+    ],
+    defaultSnippet: customSnippet,   
     mapping: [
         {
             name: 'q',
@@ -211,8 +223,7 @@ module.exports = {
         {
             name       : 'section_s',
             displayName: 'Section',
-            type : 'checkbox',
-            question: 'Help me',
+            type : 'checkbox',            
             defaultValue: 'credit-card-detail-page',
             multiSelect: true,
             tab: true
@@ -244,8 +255,7 @@ module.exports = {
         },                              
         {
             name: 'features_ss',
-            displayName: 'Features',
-            question: 'with',
+            displayName: 'Features'
         },
         {
             name: 'type_s',
@@ -277,5 +287,23 @@ module.exports = {
             value: 'published_tdt asc'
         }
     ],
-    perPage: ['10', '20', '50', '100']
+    perPage: ['10', '20', '50', '100'],
+    guides: {
+        banner: [
+            {
+                name       : 'section_s',
+                displayName: 'Section',
+                type : 'checkbox',
+                question: 'Help me',
+                defaultValue: 'credit-card-detail-page',
+                multiSelect: true,
+                tab: true
+            },
+            {
+                name: 'features_ss',
+                displayName: 'Features',
+                question: 'with',
+            }
+        ]
+    }
 }
