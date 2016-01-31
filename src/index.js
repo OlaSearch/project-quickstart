@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { parser, queryBuilder, http } from 'olasearch-solr-adapter';
 import SearchContainer from './containers/Search';
 import config from './config.movies';
+import { compose, combineReducers, applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 import {
     Search,
@@ -10,9 +13,9 @@ import {
     Guide,
     OlaProvider,
     Actions,
-    InstantSearch,
-    createStore,
-    olaState
+    InstantSearch,    
+    olaReducer,
+    createOlaMiddleWare,
 } from 'olasearch'
 
 var _root = document.getElementById('root'),
@@ -20,19 +23,38 @@ var _root = document.getElementById('root'),
     _autosuggest = document.getElementById('autosuggest');
 
 
+const __DEV__ = process.NODE_ENV == 'production'? false : true;
+
+const disabledActions = ['UPDATE_QUERY_TERM', 'REQUEST_SEARCH', 'CLEAR_QUERY_TERM', 'ADD_HISTORY', 'UPDATE_QUERY_TERM_AUTOSUGGEST', 'REQUEST_AUTOSUGGEST'];
+
 /* Options that should be passed to OlaProvider */
 
 let options = {
     config, 
     parser: new parser( config ), 
     queryBuilder: new queryBuilder( config ),
-    searchService: new http( config ), 
-    reducers: olaState
+    searchService: new http( config )
 };
+
+const logger = createLogger({
+    collapsed: true,
+    predicate: (getState, action) => __DEV__ // && disabledActions.indexOf(action.type) == -1
+});
 
 /* Create store */
 
-let store = createStore ( options );
+let reducers = combineReducers( Object.assign({}, olaReducer));
+
+let olaMiddleWare = createOlaMiddleWare(options)
+
+let store = compose(
+            applyMiddleware(thunk, olaMiddleWare, logger),
+            window.devToolsExtension ? window.devToolsExtension() : f => f
+        )(createStore)( reducers )
+
+if(process.env.NODE_ENV === 'production'){
+    store =  applyMiddleware(thunk, olaMiddleWare)(createStore)(reducers)
+}
 
 if(_root){
     ReactDOM.render(
