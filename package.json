@@ -55,7 +55,7 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
-    "olasearch": "git+ssh://git@bitbucket.org:olasearch/core.git",
+    "olasearch": "git+ssh://git@bitbucket.org:olasearch/olasearch-core.git",
     "olasearch-elasticsearch-adapter": "^0.0.4",
     "olasearch-solr-adapter": "^0.0.18",
     "react": "^0.14.3",
