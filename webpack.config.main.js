@@ -34,14 +34,5 @@ module.exports = {
       { test: require.resolve("react-dom"), loader: "expose?ReactDOM" },
       { test: /ramda/, loader: "expose?R" }
     ]
-  },
-  resolve: {
-    alias: {
-      'olasearch': path.join(__dirname, './../npm-olasearch')
-    },
-    fallback: path.resolve(__dirname, './node_modules')
-  },
-  resolveLoader: {
-      fallback: path.resolve(__dirname, './node_modules')
   }
 };

@@ -17,15 +17,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
-  resolve: {
-    alias: {
-      // 'olasearch': path.join(__dirname, './../npm-olasearch')
-    },
-    fallback: path.resolve(__dirname, './node_modules')
-  },
-  resolveLoader: {
-      fallback: path.resolve(__dirname, './node_modules')
-  },
   module: {
     loaders: [{
       test: /\.jsx?/,
