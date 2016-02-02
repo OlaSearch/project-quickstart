@@ -56,8 +56,8 @@
   },
   "dependencies": {    
     "olasearch": "git+ssh://git@bitbucket.org/olasearch/olasearch-core.git",
-    "olasearch-elasticsearch-adapter": "^0.0.4",
-    "olasearch-solr-adapter": "^0.0.18",
+    "olasearch-elasticsearch-adapter": "git+ssh://git@bitbucket.org/olasearch/elasticsearch-adapter.git",
+    "olasearch-solr-adapter": "git+ssh://git@bitbucket.org/olasearch/solr-adapter.git",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",    
     "react-redux": "^4.0.6",
