@@ -19,7 +19,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'olasearch': path.join(__dirname, './../npm-olasearch')
+      // 'olasearch': path.join(__dirname, './../npm-olasearch')
     },
     fallback: path.resolve(__dirname, './node_modules')
   },

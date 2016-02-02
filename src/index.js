@@ -38,7 +38,7 @@ let options = {
 
 const logger = createLogger({
     collapsed: true,
-    predicate: (getState, action) => __DEV__ // && disabledActions.indexOf(action.type) == -1
+    predicate: (getState, action) => __DEV__ && disabledActions.indexOf(action.type) == -1
 });
 
 /* Create store */
