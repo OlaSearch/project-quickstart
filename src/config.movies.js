@@ -1,4 +1,6 @@
-var __OLA_CONFIG__ = {
+import customSnippet from './components/customSnippet';
+
+module.exports = {
     array_separator: null,
     infiniteScroll: false,
     showEmptyFacet: false,
@@ -16,7 +18,8 @@ var __OLA_CONFIG__ = {
     api: {
         search: 'http://52.76.48.148:8983/solr/rt/select',
         suggest: 'http://52.76.48.148:8983/solr/rt/autosuggest' 
-    },    
+    },   
+    defaultSnippet: customSnippet,  
     mapping: [
         {
             name: 'q',
@@ -295,6 +298,4 @@ var __OLA_CONFIG__ = {
             }
         ]
     }
-};
-
-module.exports = __OLA_CONFIG__
+}
