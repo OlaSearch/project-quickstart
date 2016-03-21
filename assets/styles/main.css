@@ -791,7 +791,7 @@
 .ion-wineglass:before,
 .ion-woman:before,
 .ion-wrench:before,
-.ion-xbox:before, .ola-link-edit:before, .ola-link-bookmark:before, .ola-link-bookmark-action:before, .ola-link-history:before, .ola-module-clear:before, .ola-link-speech:before, .ola-search-button:before, .ola-clear-button:before, .ola-facet-title:before, .ola-facet-tag-remove:before, .ola-page-previous:before, .ola-page-next:after {
+.ion-xbox:before, .ola-search-button:before, .ola-clear-button:before, .ola-link-edit:before, .ola-link-bookmark:before, .ola-link-bookmark-action:before, .ola-link-history:before, .ola-module-clear:before, .ola-link-speech:before, .ola-facet-title:before, .ola-facet-tag-remove:before, .ola-page-previous:before, .ola-page-next:after {
   display: inline-block;
   font-family: "Ionicons";
   speak: none;
@@ -3361,7 +3361,7 @@ td,
 th {
   padding: 0; }
 
-.js-hide {
+.ola-js-hide {
   display: none; }
 
 /*------------------------------------*    RESET
@@ -3473,6 +3473,82 @@ html {
 iframe {
   border: none;
   vertical-align: top; }
+
+/**
+ * Ola buttons
+ */
+.ola-btn {
+  background: #fff;
+  border-radius: 20px;
+  padding: 8px 1em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  border: 1px white solid; }
+  .ola-btn:hover {
+    border-color: #0070d2; }
+
+/**
+	 * Button full
+	 */
+.ola-btn__full {
+  width: 100%;
+  display: block;
+  text-align: center; }
+
+/**
+ * Primary
+ */
+.ola-btn-primary {
+  background-color: #303E9F;
+  color: #333;
+  border-color: #303E9F;
+  color: #fff; }
+  .ola-btn-primary:hover {
+    border-color: #242f78; }
+
+/**
+ * Button unstyled
+ */
+.ola-btn-tag {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  display: inline;
+  margin: 0 4px 0 0; }
+  .ola-btn-tag:after {
+    content: ", "; }
+  .ola-btn-tag:last-child:after {
+    content: ""; }
+
+/**
+ * Search button
+ */
+.ola-search-button, .ola-clear-button {
+  border: none;
+  background: transparent;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  bottom: 0;
+  font-size: 26px;
+  color: #333;
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+  @media only screen and (min-width: 768px) {
+    .ola-search-button, .ola-clear-button {
+      width: 60px; } }
+  .ola-search-button:before, .ola-clear-button:before {
+    content: "\f4a5"; }
+
+/**
+	 * Clear button
+	 */
+.ola-clear-button {
+  font-size: 32px; }
+  .ola-clear-button:before {
+    content: "\f404"; }
 
 a {
   color: #0070d2;
@@ -3591,8 +3667,10 @@ a {
   font-size: 26px;
   width: 30px;
   top: 0;
-  line-height: 52px;
-  text-align: center; }
+  bottom: 0;
+  text-align: center;
+  background: transparent;
+  border: none; }
   .ola-link-speech:before {
     content: "\f461"; }
   @media only screen and (min-width: 768px) {
@@ -3602,22 +3680,10 @@ a {
     right: 90px; }
     @media only screen and (min-width: 768px) {
       .ola-autosuggest .ola-link-speech {
-        right: 100px; } }
+        right: 140px; } }
 
-.ola-link-speech-stop {
-  font-size: 16px;
-  line-height: 53px;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-name: pulse;
-  animation-name: pulse;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite; }
-  .ola-link-speech-stop:before {
-    content: "\f21b";
-    color: red; }
+.ola-link-speech-stop:before {
+  color: red; }
 
 /*
 	 * Pulse animation
@@ -3687,68 +3753,6 @@ a {
  */
 .ola-checkbox input {
   margin-right: 5px; }
-
-/**
- * Search button
- */
-.ola-search-button, .ola-clear-button {
-  border: none;
-  background: transparent;
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  line-height: 52px;
-  font-size: 26px;
-  color: #333;
-  text-align: center;
-  padding: 0; }
-  @media only screen and (min-width: 768px) {
-    .ola-search-button, .ola-clear-button {
-      width: 60px; } }
-  .ola-search-button:before, .ola-clear-button:before {
-    content: "\f4a5"; }
-
-/**
-	 * Clear button
-	 */
-.ola-clear-button {
-  font-size: 32px; }
-  .ola-clear-button:before {
-    content: "\f404"; }
-
-/**
- * Ola buttons
- */
-.ola-btn {
-  background: #fff;
-  border-radius: 20px;
-  padding: 8px 1em;
-  margin-bottom: 1em;
-  cursor: pointer;
-  border: 1px white solid; }
-  .ola-btn:hover {
-    border-color: #0070d2; }
-
-/**
-	 * Button full
-	 */
-.ola-btn__full {
-  width: 100%;
-  display: block;
-  text-align: center; }
-
-/**
- * Primary
- */
-.ola-btn-primary {
-  background-color: #303E9F;
-  color: #333;
-  border-color: #303E9F;
-  color: #fff; }
-  .ola-btn-primary:hover {
-    border-color: #242f78; }
 
 .ola-form-container {
   background: #eee;
@@ -3885,6 +3889,9 @@ a {
 .ola-highlight {
   background-color: #ffc;
   font-style: normal; }
+
+.ola-active {
+  background: #eee; }
 
 .ola-snippet-rating {
   font-size: 18px;
@@ -4069,6 +4076,58 @@ a {
 .noUi-vertical .noUi-handle-upper .noUi-tooltip {
   right: 120%; }
 
+.noUi-pips {
+  position: absolute;
+  color: #999; }
+
+.noUi-value {
+  width: 40px;
+  position: absolute;
+  text-align: center;
+  font-size: 14px; }
+
+.noUi-value-sub {
+  color: #ccc;
+  font-size: 10px; }
+
+.noUi-marker {
+  position: absolute;
+  background: #CCC; }
+
+.noUi-marker-large, .noUi-marker-sub {
+  background: #AAA; }
+
+.noUi-pips-horizontal {
+  padding: 10px 0;
+  height: 50px;
+  top: 100%;
+  left: 0;
+  width: 100%; }
+
+.noUi-value-horizontal {
+  margin-left: -20px;
+  padding-top: 20px; }
+
+.noUi-value-horizontal.noUi-value-sub {
+  padding-top: 15px; }
+
+.noUi-marker-horizontal.noUi-marker {
+  margin-left: -1px;
+  width: 1px;
+  height: 5px; }
+
+.noUi-marker-horizontal.noUi-marker-sub {
+  height: 10px; }
+
+.noUi-marker-horizontal.noUi-marker-large {
+  height: 15px; }
+
+.noUi-pips-vertical {
+  padding: 0 10px;
+  height: 100%;
+  top: 0;
+  left: 100%; }
+
 /**
  * Slider
  */
@@ -4078,7 +4137,7 @@ a {
 /**
  * Facet container
  */
-.ola-facet-list a, .ola-facet-list .ola-checkbox-label {
+.ola-facet-list a {
   display: block;
   clear: both;
   font-size: 14px;
@@ -4174,7 +4233,21 @@ a {
   width: 100%;
   text-align: left;
   padding: 3px 0;
-  clear: both; }
+  clear: both;
+  margin: 0; }
+
+/**
+ * Checkbox
+ */
+.ola-checkbox-label {
+  display: flex;
+  font-size: 14px;
+  padding: 3px 0;
+  cursor: pointer; }
+  .ola-checkbox-label .ola-search-facet-name {
+    flex: 1; }
+  .ola-checkbox-label input {
+    margin-top: 5px; }
 
 .ola-facet-tag {
   background: #5476f8;
@@ -4465,25 +4538,39 @@ a {
 /**
  * Style snippets
  */
-.ola-autosuggest .ola-snippet {
+.ola-suggestions .ola-snippet {
   margin-bottom: 0;
   background-color: transparent;
   padding-left: 1em;
   padding-right: 1em; }
-  .ola-autosuggest .ola-snippet:hover {
+  .ola-suggestions .ola-snippet:hover, .ola-suggestions .ola-snippet.ola-active {
     background-color: #eee; }
 
-.ola-autosuggest .ola-snippet-image {
+.ola-suggestions .ola-snippet-image {
   width: 54px; }
-  .ola-autosuggest .ola-snippet-image img {
+  .ola-suggestions .ola-snippet-image img {
     max-width: 100%;
     margin-bottom: 0; }
 
-.ola-autosuggest p {
+.ola-suggestions p {
   margin-bottom: 0; }
 
-.ola-autosuggest .ola-field-title {
+.ola-suggestions .ola-field-title {
   font-size: 16px; }
+
+/**
+ * Facet suggestions
+ */
+.ola-facet-suggestions .ola-facet-suggestion {
+  padding: 5px 1em;
+  cursor: pointer;
+  border: none;
+  display: block;
+  background-color: transparent;
+  width: 100%;
+  text-align: left; }
+  .ola-facet-suggestions .ola-facet-suggestion:hover, .ola-facet-suggestions .ola-facet-suggestion.ola-active {
+    background-color: #eee; }
 
 .ola-panel {
   border: 1px #b1dafc solid;
@@ -4821,6 +4908,19 @@ a {
   z-index: 2;
   border-radius: 5px; }
 
+.ola-bookmarks-container .ola-snippet-image, .ola-history-container .ola-snippet-image {
+  width: 54px; }
+  .ola-bookmarks-container .ola-snippet-image img, .ola-history-container .ola-snippet-image img {
+    max-width: 100%;
+    margin-bottom: 0; }
+
+.ola-bookmarks-container .ola-snippet, .ola-history-container .ola-snippet {
+  margin-bottom: 0;
+  background-color: transparent; }
+
+.ola-bookmarks-container .ola-field-title, .ola-history-container .ola-field-title {
+  font-size: 16px; }
+
 /**
 	 * Link
 	 */
@@ -4833,7 +4933,8 @@ a {
   text-align: center;
   background: none;
   border: none;
-  padding: 0; }
+  padding: 0;
+  bottom: 0; }
   @media only screen and (min-width: 768px) {
     .ola-link-bookmark, .ola-link-history {
       right: 58px; } }

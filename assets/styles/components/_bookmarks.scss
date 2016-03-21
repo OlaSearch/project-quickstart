@@ -8,6 +8,24 @@
 		z-index: 2;
 		border-radius: 5px;
 	}	
+
+	.ola-snippet-image{
+		width: 54px;		
+
+		img{
+			max-width: 100%;
+			margin-bottom: 0;
+		}
+	}
+
+	.ola-snippet{
+		margin-bottom: 0;
+		background-color: transparent;
+	}
+
+	.ola-field-title{
+		font-size: $base-font-size;
+	}
 }
 
 	/**
@@ -24,6 +42,7 @@
 		background: none;
 		border: none;
 		padding: 0;
+		bottom: 0;
 
 		@include media(tablet){
 			right: 58px;

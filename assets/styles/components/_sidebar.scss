@@ -3,7 +3,7 @@
  */
 
 .ola-facet-list{
-	a, .ola-checkbox-label{
+	a{
 		display: block;
 		clear: both;
 		font-size: 14px;
@@ -144,4 +144,25 @@
 	text-align: left;
 	padding: 3px 0;
 	clear: both;
+	margin: 0;
+}
+
+
+/**
+ * Checkbox
+ */
+
+.ola-checkbox-label{
+	display: flex;
+	font-size: 14px;
+	padding: 3px 0;
+	cursor: pointer;
+
+	.ola-search-facet-name{
+		flex: 1;
+	}
+
+	input{
+		margin-top: 5px;
+	}
 }

@@ -190,6 +190,18 @@
     right: 120%;
 }
 
+.noUi-pips{position:absolute;color:#999}
+.noUi-value{width:40px;position:absolute;text-align:center; font-size: 14px;}
+.noUi-value-sub{color:#ccc;font-size:10px}
+.noUi-marker{position:absolute;background:#CCC}
+.noUi-marker-large,.noUi-marker-sub{background:#AAA}
+.noUi-pips-horizontal{padding:10px 0;height:50px;top:100%;left:0;width:100%}
+.noUi-value-horizontal{margin-left:-20px;padding-top:20px}
+.noUi-value-horizontal.noUi-value-sub{padding-top:15px}
+.noUi-marker-horizontal.noUi-marker{margin-left:-1px;width:1px;height:5px}
+.noUi-marker-horizontal.noUi-marker-sub{height:10px}
+.noUi-marker-horizontal.noUi-marker-large{height:15px}
+.noUi-pips-vertical{padding:0 10px;height:100%;top:0;left:100%}
 
 
 /**

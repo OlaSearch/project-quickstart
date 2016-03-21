@@ -52,14 +52,14 @@
  * Style snippets
  */
 
-.ola-autosuggest{
+.ola-suggestions{
 	.ola-snippet{
 		margin-bottom: 0;
 		background-color: transparent;
 		padding-left: 1em;
 		padding-right: 1em;
 
-		&:hover{
+		&:hover, &.ola-active{
 			background-color: #eee;
 		}
 	}
@@ -78,5 +78,25 @@
 
 	.ola-field-title{
 		font-size: $base-font-size;
+	}
+}
+
+
+/**
+ * Facet suggestions
+ */
+
+.ola-facet-suggestions{
+	.ola-facet-suggestion{
+		padding: 5px 1em;
+		cursor: pointer;
+		border: none;
+		display: block;
+		background-color: transparent;
+		width: 100%;
+		text-align: left;
+		&:hover, &.ola-active{
+			background-color: #eee;
+		}
 	}
 }
