@@ -13,8 +13,16 @@ module.exports = {
         tablet: 'screen and (min-width: 768px)',
         desktop: 'screen and (min-width: 960px)'
     },
-    method: 'GET',  
-    enableDetailPage: true,
+    ajaxOptions: {
+        method: 'post',
+        type: 'json',
+        crossOrigin: true,
+        // withCredentials: true,
+        headers: {            
+            // "Authorization": "Basic " + btoa( 'user' + ':' + 'pass' )
+        }
+    },
+    searchPageUrl: '/search.html',    
     api: {
         search: 'http://52.76.115.91:9200/scb/_search',
         suggest: 'http://52.76.115.91:9200/scb/_search' 

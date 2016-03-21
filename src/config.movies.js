@@ -12,6 +12,16 @@ module.exports = {
         tablet: 'screen and (min-width: 768px)',
         desktop: 'screen and (min-width: 960px)'
     },
+    ajaxOptions: {
+        method: 'post',
+        type: 'json',
+        crossOrigin: true,
+        // withCredentials: true,
+        headers: {            
+            // "Authorization": "Basic " + btoa( 'user' + ':' + 'pass' )
+        }
+    },
+    searchPageUrl: '/search.html',
     method: 'GET',
     jsonp: true,
     enableDetailPage: true,
