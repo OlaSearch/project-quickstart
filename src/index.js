@@ -15,7 +15,7 @@ import {
     Actions,
     InstantSearch,    
     olaReducer,
-    createOlaMiddleWare,
+    createOlaMiddleware,
 } from 'olasearch'
 
 var _root = document.getElementById('root'),
@@ -45,7 +45,7 @@ const logger = createLogger({
 
 let reducers = combineReducers( Object.assign({}, olaReducer));
 
-let olaMiddleWare = createOlaMiddleWare(options)
+let olaMiddleWare = createOlaMiddleware(options)
 
 let store = compose(
             applyMiddleware(thunk, olaMiddleWare, logger),
