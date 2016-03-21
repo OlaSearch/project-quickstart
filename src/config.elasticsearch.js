@@ -41,7 +41,9 @@ module.exports = {
         {
             name: 'q',
             key: 'q',
-            value: ''
+            value: '',
+            default_field: 'title',
+            multi_match_fields: ["title"],
         },
         {
             name: 'page',
