@@ -1,6 +1,6 @@
 import customSnippet from './components/customSnippet';
 
-module.exports = {      
+module.exports = {
     array_separator: null,
     infiniteScroll: false,
     showEmptyFacet: false,
@@ -18,14 +18,14 @@ module.exports = {
         type: 'json',
         crossOrigin: true,
         // withCredentials: true,
-        headers: {            
+        headers: {
             // "Authorization": "Basic " + btoa( 'user' + ':' + 'pass' )
         }
     },
-    searchPageUrl: '/search.html',    
+    searchPageUrl: '/search.html',
     api: {
         search: 'http://52.76.115.91:9200/scb/_search',
-        suggest: 'http://52.76.115.91:9200/scb/_search' 
+        suggest: 'http://52.76.115.91:9200/scb/_search'
     },
     snippetRules: [
         {
@@ -36,7 +36,7 @@ module.exports = {
             template: customSnippet
         }
     ],
-    defaultSnippet: customSnippet,   
+    defaultSnippet: customSnippet,
     mapping: [
         {
             name: 'q',
@@ -58,10 +58,10 @@ module.exports = {
         },
         {
             name: 'facet_field',
-            key: 'aggregatons',                 
+            key: 'aggregatons',
             value: ['page_s', 'section_s', 'cc_category_s', 'cc_has_reward_b', 'cc_annual_fee_i', 'cc_fee_waiver_s', 'features_ss', 'type_s', 'features_ss', 'channel_type_s'],
             hidden: true,
-        },      
+        },
         {
             name: 'facet_query',
             key: 'fq',
@@ -70,7 +70,7 @@ module.exports = {
         {
             name: 'field_query',
             key: 'fields',
-            value : ["_id", "section_title_s", "body", "title_t", "description_t", "keywords_t"],               
+            value : ["_id", "section_title_s", "body", "title_t", "description_t", "keywords_t"],
             hidden: true
         },
         {
@@ -78,7 +78,7 @@ module.exports = {
             key: 'facet.limit',
             value: 100,
             hidden: true,
-        },              
+        },
         {
             name: 'spellcheck_collate',
             key: 'spellcheck.collate',
@@ -112,12 +112,12 @@ module.exports = {
         {
             name: 'sort',
             key: 'sort',
-            value: '',                  
+            value: '',
         },
         {
             name: 'header',
             key: 'omitHeader',
-            value: 'false',                 
+            value: 'false',
             hidden: true
         },
         {
@@ -173,7 +173,7 @@ module.exports = {
     fieldMappings: {
         id        : '_id',
         url: '_id',
-        title     : 'title_t',      
+        title     : 'title_t',
         thumbnail: 'thumbnail_s',
         thumbnail_mobile: 'thumbnail_mobile_s',
         summary: 'description_t',
@@ -218,7 +218,7 @@ module.exports = {
         'save': 'Save',
         'borrow': 'Borrow',
         'invest': 'Invest',
-        'insure': 'Insure',             
+        'insure': 'Insure',
         'help-centre': 'Support'
     },
     tabsToDisplay: ['credit-card-detail-page', 'save', 'borrow', 'invest', 'insure', 'help-centre'],
@@ -233,14 +233,14 @@ module.exports = {
         {
             name       : 'section_s',
             displayName: 'Section',
-            type : 'checkbox',            
+            type : 'checkbox',
             defaultValue: 'credit-card-detail-page',
             multiSelect: true,
             tab: true
         },
         {
             name: 'cc_category_s',
-            displayName: 'Category',                    
+            displayName: 'Category',
             type: 'checkbox',
             multiSelect: true
         },
@@ -262,7 +262,7 @@ module.exports = {
             displayName: 'Rewards',
             type: 'boolean',
             multiSelect: true
-        },                              
+        },
         {
             name: 'features_ss',
             displayName: 'Features'
@@ -278,7 +278,7 @@ module.exports = {
             type: 'checkbox',
             multiSelect: true
         }
-    ],          
+    ],
     sortBy: [
         {
             name: 'Title A-Z',

@@ -15,8 +15,25 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'OLA_ENV': JSON.stringify('staging')
+      }
+    })
   ],
+  resolve: {
+    alias: {
+      // 'olasearch': path.join(__dirname, './../npm-olasearch'),
+      // 'olasearch-elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
+      // 'olasearch-logger-middleware': path.join(__dirname, './../olasearch-logger-middleware'),
+      // 'reqwest': path.join(__dirname, './../reqwest'),
+    },
+    fallback: path.resolve(__dirname, './node_modules')
+  },
+  resolveLoader: {
+      fallback: path.resolve(__dirname, './node_modules')
+  },
   module: {
     loaders: [{
       test: /\.jsx?/,

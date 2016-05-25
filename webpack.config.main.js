@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-module.exports = {  
+module.exports = {
   entry: [
     './src/main'
   ],
@@ -23,16 +23,24 @@ module.exports = {
         warnings: false
       }
     })
-  ],  
+  ],
+  resolve: {
+    alias: {
+      'olasearch': path.join(__dirname, './../npm-olasearch')
+    },
+    fallback: path.resolve(__dirname, './node_modules')
+  },
   module: {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'src')      
-    }, 
+      include: path.join(__dirname, 'src')
+    },
       { test: require.resolve("react"), loader: "expose?React" },
       { test: require.resolve("react-dom"), loader: "expose?ReactDOM" },
-      { test: /ramda/, loader: "expose?R" }
+      { test: /ramda/, loader: "expose?R" },
+      { test: require.resolve("redux"), loader: "expose?Redux" },
+      { test: require.resolve("react-redux"), loader: "expose?ReactRedux" }
     ]
   }
 };

@@ -10,10 +10,9 @@ import createLogger from 'redux-logger';
 import {
     Search,
     AutoSuggest,
-    Guide,
     OlaProvider,
     Actions,
-    InstantSearch,    
+    InstantSearch,
     olaReducer,
     createOlaMiddleware,
 } from 'olasearch'
@@ -30,8 +29,8 @@ const disabledActions = ['UPDATE_QUERY_TERM', 'REQUEST_SEARCH', 'CLEAR_QUERY_TER
 /* Options that should be passed to OlaProvider */
 
 let options = {
-    config, 
-    parser: new parser( config ), 
+    config,
+    parser: new parser( config ),
     queryBuilder: new queryBuilder( config ),
     searchService: new http( config )
 };
@@ -44,9 +43,7 @@ const logger = createLogger({
 /* Create store */
 
 let reducers = combineReducers( Object.assign({}, olaReducer));
-
 let olaMiddleWare = createOlaMiddleware(options)
-
 let store = compose(
             applyMiddleware(thunk, olaMiddleWare, logger),
             window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -65,19 +62,10 @@ if(_root){
     );
 }
 
-if(_guide){
-    ReactDOM.render(
-        <OlaProvider { ...options } store = { store }>            
-            <Guide name="banner" />           
-        </OlaProvider>
-        , _guide
-    );
-}
-
 if(_autosuggest){
     ReactDOM.render(
-        <OlaProvider { ...options } store = { store }>            
-            <AutoSuggest />         
+        <OlaProvider { ...options } store = { store }>
+            <AutoSuggest />
         </OlaProvider>
         , _autosuggest
     );
