@@ -20,8 +20,11 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
-      }
-    })
+      },
+      comments: false
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.BannerPlugin("Copyright Ola Search Pte Ltd 2016", { raw: false, entryOnly: true })
   ],
   module: {
     loaders: [{
@@ -34,8 +37,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      // 'olasearch': path.join(__dirname, './../npm-olasearch'),
-      // 'olasearch-elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
+      'olasearch': path.join(__dirname, './../npm-olasearch'),
+      // 'olasearch-solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
       // 'olasearch-logger-middleware': path.join(__dirname, './../olasearch-logger-middleware'),
       // 'reqwest': path.join(__dirname, './../reqwest'),
     },
@@ -45,7 +48,6 @@ module.exports = {
     "react": "React",
     "react-dom": "ReactDOM",
     "olasearch": "OlaSearch",
-    "ramda": "R",
     "redux": "Redux",
     "react-redux": "ReactRedux"
   }

@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "config": "cross-env NODE_ENV=production webpack --config webpack.config.demo.js",
+    "config": "cross-env NODE_ENV=production webpack --config webpack.config.demo.js --json | webpack-bundle-size-analyzer",
     "main": "cross-env NODE_ENV=production webpack --config webpack.config.main.js --json | webpack-bundle-size-analyzer",
     "demo": "npm run config && npm run main",
     "build": "npm run clean && npm run build:webpack",
@@ -44,7 +44,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "cross-env": "^1.0.8",
-    "eslint": "^2.10.2",
+    "eslint": "^2.11.1",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^5.1.1",
     "eventsource-polyfill": "^0.9.6",
@@ -58,6 +58,7 @@
   "dependencies": {
     "olasearch": "git+ssh://git@bitbucket.org/olasearch/olasearch-core.git",
     "olasearch-elasticsearch-adapter": "git+ssh://git@bitbucket.org/olasearch/elasticsearch-adapter.git",
+    "olasearch-logger-middleware": "git+ssh://git@bitbucket.org/olasearch/olasearch-logger-middleware.git",
     "olasearch-solr-adapter": "git+ssh://git@bitbucket.org/olasearch/solr-adapter.git",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

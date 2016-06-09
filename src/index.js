@@ -5,7 +5,7 @@ import SearchContainer from './containers/Search';
 import config from './config.movies';
 import { compose, combineReducers, applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createLoggerMiddleware, loggerService } from 'olasearch-logger-middleware';
 
 import {
     Search,
@@ -33,29 +33,34 @@ let options = {
     parser: new parser( config ),
     queryBuilder: new queryBuilder( config ),
     searchService: new http( config )
-};
-
-const logger = createLogger({
-    collapsed: true,
-    predicate: (getState, action) => __DEV__ && disabledActions.indexOf(action.type) == -1
-});
+}
 
 /* Create store */
 
 let reducers = combineReducers( Object.assign({}, olaReducer));
 let olaMiddleWare = createOlaMiddleware(options)
-let store = compose(
-            applyMiddleware(thunk, olaMiddleWare, logger),
-            window.devToolsExtension ? window.devToolsExtension() : f => f
-        )(createStore)( reducers )
+let loggerMiddleWare = createLoggerMiddleware(options)
+let store
 
 if(process.env.NODE_ENV === 'production'){
-    store =  applyMiddleware(thunk, olaMiddleWare)(createStore)(reducers)
+    store =  applyMiddleware(thunk, olaMiddleWare, loggerMiddleWare)
+} else {
+    var createLogger = require('redux-logger')
+    const logger = createLogger({
+        collapsed: true,
+        predicate: (getState, action) => __DEV__ //&& disabledActions.indexOf(action.type) == -1
+    });
+    store = compose(
+        applyMiddleware(thunk, olaMiddleWare, loggerMiddleWare, logger),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
 }
+
+let finalStore = store(createStore)(reducers)
 
 if(_root){
     ReactDOM.render(
-        <OlaProvider { ...options } store = { store } >
+        <OlaProvider { ...options } store = { finalStore } >
             <Search />
         </OlaProvider>
         , _root
@@ -64,7 +69,7 @@ if(_root){
 
 if(_autosuggest){
     ReactDOM.render(
-        <OlaProvider { ...options } store = { store }>
+        <OlaProvider { ...options } store = { finalStore }>
             <AutoSuggest />
         </OlaProvider>
         , _autosuggest
