@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { parser, queryBuilder, http } from 'olasearch-solr-adapter';
+import { Parser, QueryBuilder, Http } from 'olasearch-solr-adapter';
 import SearchContainer from './containers/Search';
 import config from './config.movies';
 import { compose, combineReducers, applyMiddleware, createStore } from 'redux';
@@ -30,9 +30,9 @@ const disabledActions = ['UPDATE_QUERY_TERM', 'REQUEST_SEARCH', 'CLEAR_QUERY_TER
 
 let options = {
     config,
-    parser: new parser( config ),
-    queryBuilder: new queryBuilder( config ),
-    searchService: new http( config )
+    parser: new Parser( config ),
+    queryBuilder: new QueryBuilder( config ),
+    searchService: new Http( config )
 }
 
 /* Create store */
