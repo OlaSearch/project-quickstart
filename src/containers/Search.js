@@ -3,117 +3,112 @@ import { connect } from 'react-redux';
 import OlaSearch from 'olasearch';
 
 var {
-    InstantSearch,    
-    SearchResults,
-    AutoSuggest,
-    Actions,
-    Pagination,
-    SearchFooter,
-    SearchFilters,
-    Tabs,
-    SelectedFilters,
-    Decorators,
+  InstantSearch,
+  SearchResults,
+  AutoSuggest,
+  Actions,
+  Pagination,
+  SearchFooter,
+  SearchFilters,
+  Tabs,
+  SelectedFilters,
+  Decorators,
 } = OlaSearch;
 
 class Search extends React.Component{
- 
+  componentDidMount(){
+    this.props.dispatch( Actions.Search.initSearch( { config: this.context.config }) )
+  }
+  render(){
 
-    componentDidMount(){
-        
-        this.props.dispatch( Actions.Search.initSearch( { config: this.context.config }) )     
+    var {
+      dispatch,
+      AppState,
+      QueryState,
+      components,
+      Device,
+    } = this.props;
 
-    }
+    var {
+      results,
+      facets,
+      isLoading,
+      suggestedTerm,
+      spellSuggestions,
+      bookmarks,
+      totalResults,
+      error,
+    } = AppState;
 
-    render(){
+    var {
+      q,
+      facet_query,
+      page,
+      per_page,
+      sort,
+      referrer,
+    } = QueryState;
 
-        var {
-            dispatch,       
-            AppState,
-            QueryState,
-            components,
-            Device,
-        } = this.props;
-        
-        var {
-            results,
-            facets,
-            isLoading,
-            suggestedTerm,
-            spellSuggestions,
-            bookmarks,
-            totalResults,
-            error,
-        } = AppState;
+    var {
+      isPhone,
+      isTablet
+    } = Device;
 
-        var {
-            q,
-            facet_query,
-            page,
-            per_page,
-            sort,
-            referrer,
-        } = QueryState;
+    return (
+      <div>
+        <AutoSuggest
+          dispatch = { this.props.dispatch }
+          searchUrl = '/?'
+          />
 
-        var {
-            isPhone,
-            isTablet
-        } = Device;
+        <SelectedFilters
+          facets = {facet_query}
+          dispatch = {dispatch}
+          referrer = {referrer}
+        />
 
-        return (
-            <div>
-                <AutoSuggest
-                    dispatch = { this.props.dispatch }
-                    searchUrl = '/?'
-                    />
+        <Tabs
+          facets = {facets}
+          dispatch = {dispatch}
+          selected = {facet_query}
+        />
 
-                <SelectedFilters 
-                    facets = {facet_query} 
-                    dispatch = {dispatch} 
-                    referrer = {referrer}
-                />
+        <div className="ola-sidebar">
+          <SearchFilters
+              facets = {facets}
+              selected = {facet_query}
+              dispatch = {dispatch} />
+        </div>
 
-                <Tabs 
-                    facets = {facets} 
-                    dispatch = {dispatch}
-                    selected = {facet_query}
-                />
-
-                <div className="ola-sidebar">
-                    <SearchFilters 
-                            facets = {facets} 
-                            selected = {facet_query}
-                            dispatch = {dispatch} />
-                </div>
-
-                <div className="ola-results-container">
-                    <SearchResults 
-                        results = { this.props.AppState.results } 
-                        bookmarks = { this.props.AppState.bookmarks }
-                        dispatch = {this.props.dispatch}
-                        />
-                    <SearchFooter
-                        totalResults = {totalResults} 
-                        currentPage = {page} 
-                        perPage = {per_page} 
-                        dispatch = { dispatch }
-                        isPhone = { isPhone }
-                        />
-                </div>
-            </div>
-        )
-    }
+        <div className="ola-results-container">
+          <SearchResults
+            results = { this.props.AppState.results }
+            bookmarks = { this.props.AppState.bookmarks }
+            dispatch = {this.props.dispatch}
+            />
+          <SearchFooter
+            totalResults = {totalResults}
+            currentPage = {page}
+            perPage = {per_page}
+            dispatch = { dispatch }
+            isPhone = { isPhone }
+            />
+        </div>
+      </div>
+    )
+  }
 }
 
 Search.contextTypes = {
-    config: React.PropTypes.object
+  config: React.PropTypes.object
 };
 
 function mapStateToProps( state ){
-    return {
-        AppState: state.AppState,
-        QueryState: state.QueryState,
-        Device: state.Device       
-    }
+  return {
+    AppState: state.AppState,
+    QueryState: state.QueryState,
+    Device: state.Device
+  }
 }
 
-export default connect( mapStateToProps ) ( Decorators.OlaRoute.OlaRoute(Search) )
+export default connect( mapStateToProps ) ( Decorators.OlaRoute(Search) )
