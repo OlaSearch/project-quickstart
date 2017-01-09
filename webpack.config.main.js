@@ -30,7 +30,8 @@ module.exports = {
   resolve: {
     alias: {
       'olasearch': path.join(__dirname, './../npm-olasearch'),
-      // 'olasearch-elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter')
+      'react': path.join(__dirname, './node_modules/react'),
+      'react-dom': path.join(__dirname, './node_modules/react-dom')
     },
     fallback: path.resolve(__dirname, './node_modules')
   },

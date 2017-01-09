@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -10,6 +11,7 @@ module.exports = {
     filename: 'olasearch.config.min.js'
   },
   plugins: [
+    new ExtractTextPlugin('./assets/styles/ola.core.min.css', { allChunks: true }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -32,15 +34,19 @@ module.exports = {
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
     },
-      { test: require.resolve("react"), loader: "expose?React" }
+      { test: require.resolve("react"), loader: "expose?React" },
+      {
+        test: /(\.scss|\.css)$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css!sass')
+      }
     ]
   },
   resolve: {
     alias: {
       'olasearch': path.join(__dirname, './../npm-olasearch'),
-      // 'olasearch-solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
+      'olasearch-solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
       'olasearch-logger-middleware': path.join(__dirname, './../olasearch-logger-middleware'),
-      // 'reqwest': path.join(__dirname, './../reqwest'),
+      'react-line-progress': path.join(__dirname, './../react-line-progress')
     },
     fallback: path.resolve(__dirname, './node_modules')
   },
@@ -49,6 +55,7 @@ module.exports = {
     "react-dom": "ReactDOM",
     "olasearch": "OlaSearch",
     "redux": "Redux",
-    "react-redux": "ReactRedux"
+    "react-redux": "ReactRedux",
+    'olasearchconfig': 'OlaSearchConfig'
   }
 };
