@@ -2,14 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Parser, QueryBuilder, Http } from 'olasearch-solr-adapter'
 import SearchContainer from './containers/Search'
-import config from './config.movies'
+import config from 'olasearchconfig'
 import thunk from 'redux-thunk'
 import { createLoggerMiddleware } from 'olasearch-logger-middleware'
 import { AutoSuggest, OlaProvider, createStore } from 'olasearch'
+import translations from './translations'
 
-var _root = document.getElementById('root'),
-  _guide = document.getElementById('guide'),
-  _autosuggest = document.getElementById('autosuggest')
+// require('./style/main.scss')
+
+var _root = document.getElementById('ola-serp')
+var _autosuggest = document.getElementById('ola-autosuggest')
 
 /* Optional loggerMiddleware */
 let loggerMiddleware = createLoggerMiddleware({ logger: config.logger })
@@ -18,7 +20,7 @@ let store = createStore(config, { Parser, QueryBuilder, Http }, {}, [loggerMiddl
 
 if(_root){
   ReactDOM.render(
-    <OlaProvider config={config} store={store} >
+    <OlaProvider config={config} store={store} translations={translations}>
       <SearchContainer />
     </OlaProvider>
     , _root
@@ -27,8 +29,11 @@ if(_root){
 
 if(_autosuggest){
   ReactDOM.render(
-    <OlaProvider config={config} store={store}>
-      <AutoSuggest />
+    <OlaProvider config={config} store={store} translations={translations}>
+      <AutoComplete
+        scrollOnFocus={false}
+        forceRedirect
+      />
     </OlaProvider>
     , _autosuggest
   )
