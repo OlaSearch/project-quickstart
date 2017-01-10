@@ -17,6 +17,8 @@ import {
 } from 'olasearch'
 import EscalationForm from 'olasearch/lib/components/EscalationForm'
 import Answer from 'olasearch/lib/components/Answer'
+import propEq from 'ramda/src/propEq'
+import find from 'ramda/src/find'
 
 class Search extends React.Component{
   constructor (props) {
@@ -75,16 +77,17 @@ class Search extends React.Component{
       'ola-modal-show': isSidebarOpen,
       'ola-modal-hide': !isSidebarOpen
     })
-    let resultsKlass = classNames('ola-results-flex', {
+    let ola_collection = find(propEq('name', 'ola_collection_name'))(facet_query)
+    let ola_collection_name = ola_collection ? ola_collection.selected[0] : undefined
+    let containerKlass = classNames('ola-container', `ola-collection-${ola_collection_name}`, {
       'ola-sidebar-open': isSidebarOpen
     })
-    let hasAnswer = !!(answer && answer.data && answer.suggestions.length)
 
     return (
-      <div className='ola-container'>
+      <div className={containerKlass}>
         <div className={modalKlass}  onClick={this.toggleSidebar} />
+        <div className='ola-results-flex'>
 
-        <div className={resultsKlass}>
           <div className="ola-sidebar">
             <SearchFilters
               facets = {facets}
@@ -92,6 +95,7 @@ class Search extends React.Component{
               dispatch = {dispatch}
             />
           </div>
+
           <div className="ola-results-container">
             <h1 className='page-title'>Search</h1>
 
@@ -99,13 +103,6 @@ class Search extends React.Component{
               q={q}
               categoryGroup='sm_field_subjectsdollarname'
               searchOnSelect
-              onSelect={(suggestion) => {
-                if (suggestion.type === 'entity' && !suggestion.taxo_term) {
-                  /* Only for countries */
-                  this.props.dispatch(Actions.Search.removeAllFacets())
-                  this.props.dispatch(Actions.Search.updateQueryTerm(suggestion.term))
-                }
-              }}
             />
 
             <ProgressBar
@@ -129,13 +126,11 @@ class Search extends React.Component{
               perPage={per_page}
             />
 
-            {!hasAnswer
-              ? <TermSuggestion
-                  term={suggestedTerm}
-                  q={q}
-                />
-              : null
-            }
+            <TermSuggestion
+              term={suggestedTerm}
+              q={q}
+              answer={answer}
+            />
 
             <SpellSuggestion
               suggestions={spellSuggestions}
