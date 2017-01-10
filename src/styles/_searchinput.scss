@@ -1,0 +1,85 @@
+/****** Flex ******/
+
+.ola-search-form-container {
+  display: flex;
+  background-color: white;
+  border: 1px #ccc solid;
+  justify-content: center;
+  position: relative;
+  min-width: 500px;
+
+  .ola-autosuggest-focus & {
+    box-shadow: $small-box-shadow;
+  }
+
+  .ola-text-input {
+    padding-left: 10px;
+    font-size: 18px;
+    height: 40px;
+    width: 100%;
+  }
+}
+
+  .ola-form-input-wrapper {
+    flex: 1;
+    position: relative;
+
+    .ola-text-input {
+      border: none;
+    }
+  }
+
+  .ola-link-bookmark, .ola-link-history, .ola-link-speech, .ola-search-button, .ola-clear-button {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    vertical-align: top;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+
+    &:before {
+      @extend .iconfont;
+      vertical-align: middle;
+    }
+  }
+
+  /**
+   * Bookmark
+   */
+  .ola-link-bookmark{
+    &:before{
+      content: "bookmark_border";
+    }
+  }
+
+  /**
+   * Speech
+   */
+  .ola-link-speech{
+    &:before{
+      content: "mic_none";
+    }
+  }
+
+  /**
+   * Search
+   */
+  .ola-search-button{
+    background-color: #eee;
+    width: 60px;
+    &:before{
+      content: "search";
+    }
+  }
+
+/**
+ * Clear button
+ */
+
+.ola-clear-button {
+  @include media (desktop) {
+    display: none;
+  }
+}

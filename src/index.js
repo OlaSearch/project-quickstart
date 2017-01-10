@@ -8,7 +8,7 @@ import { createLoggerMiddleware } from 'olasearch-logger-middleware'
 import { AutoSuggest, OlaProvider, createStore } from 'olasearch'
 import translations from './translations'
 
-// require('./style/main.scss')
+require('./styles/main.scss')
 
 var _root = document.getElementById('ola-serp')
 var _autosuggest = document.getElementById('ola-autosuggest')

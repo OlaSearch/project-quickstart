@@ -1,0 +1,38 @@
+a {
+
+}
+
+/**
+ * Add bookmark
+ */
+
+.ola-link-bookmark-action {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  margin-top: 8px;
+  visibility: hidden;
+
+  .ola-snippet:hover & {
+    visibility: visible;
+  }
+
+  &:before {
+    @extend .iconfont;
+    content: 'bookmark_border';
+    vertical-align: middle;
+  }
+
+  span{
+    display: none;
+  }
+
+  &.action-remove:before {
+    content: 'bookmark';
+    visibility: visible;
+  }
+}

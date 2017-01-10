@@ -35,7 +35,10 @@ module.exports = {
         {
             name: 'q',
             key: 'q',
-            value: ''
+            value: '',
+            default_field: 'title_t',
+            multi_match_fields: ['title_t', 'content_t', 'excerpt_t', 'ola_bb_queries^9000'],
+            suggest_fields: 'spell_field'
         },
         {
             name: 'page',

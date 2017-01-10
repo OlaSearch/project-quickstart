@@ -1,0 +1,257 @@
+/**
+ * Facet container
+ */
+
+.ola-facet-list{
+    a, .ola-checkbox-label{
+        display: flex;
+        clear: both;
+        font-size: 14px;
+        padding: 3px 0;
+        cursor: pointer;
+    align-items: center;
+    font-weight: 400;
+    margin: 0;
+    }
+}
+
+.ola-search-facet-count {
+  // background-color: #eee;
+  // color: #888;
+  line-height: 1;
+  border-radius: 3px;
+  line-height: 20px;
+  display: inline-block;
+  min-width: 20px;
+  text-align: center;
+  // font-size: 11px;
+  // font-weight: 100;
+  &:before {
+    content: "(";
+    padding-left: 5px;
+  }
+  &:after {
+    content: ")"
+  }
+
+  .ola-module & {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+/**
+ * Checkbox
+ */
+
+.ola-checkbox-label{
+  input {
+    margin: 0 5px 0 0;
+    float: none;
+  }
+    .ola-search-facet-name{
+        flex: 1;
+    }
+}
+
+
+/**
+ * Title
+ */
+
+.ola-facet-title{
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+
+  &:before{
+    @extend .iconfont;
+    content: "remove_circle_outline";
+    margin-right: 0em;
+    font-size: 18px;
+    vertical-align: top;
+    margin-top: 6px;
+    color: #666;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .ola-facet-collapsed &{
+      &:before{
+        content: "add_circle_outline";
+      }
+  }
+}
+
+
+/**
+ * Facet
+ */
+
+.ola-facet{
+    padding-bottom: 2em;
+
+    &.ola-facet-collapsed{
+
+        .ola-facet-wrapper{
+            display: none;
+        }
+    }
+}
+
+
+/**
+ * Input
+ */
+
+.ola-facet-filter-input{
+    width: 100%;
+    background: white;
+  border: 1px #ddd solid;
+    margin-bottom: 1em;
+    font-size: 14px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+/**
+ * Facet overflow contianer
+ */
+
+.ola-facet-scroll-list{
+    max-height: 250px;
+    overflow: auto;
+    margin-bottom: 0.25em;
+}
+
+
+/* Show more link */
+
+.ola-link-show-more{    
+    color: #333;
+}
+
+
+/**
+ * Ola facet links
+ */
+
+.ola-facet-link{
+    background: none;
+    padding: 0;
+    // color: $link-color;
+    display: block;
+    border: none;
+    @include font-size(14px, false);
+    width: 100%;
+    text-align: left;
+    padding: 3px 0;
+    clear: both;
+    margin: 0;
+}
+
+/* Histogram */
+
+.ola-histogram{
+    
+}
+
+.ola-histogram-bar{
+    transition: all 0.2s ease-in;
+}
+
+
+/**
+ * Facets
+ */
+
+.ola-facet {
+}
+
+
+/**
+ * facet
+ */
+
+.ola-facet-h-group-inner {
+  padding-left: 15px;
+
+  .ola-checkbox {
+    &:before {
+      content: "\f3d2";
+      font-family: "Ionicons";
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 8px;
+      margin-top: 1px;
+      width: 0;
+      display: none;
+    }
+  }
+
+  .ola-checkbox-active {
+    // font-weight: bold;
+    color: $brand-color;
+    // display: none;
+    &:before {
+      display: block;
+      margin-right: 15px;
+    }
+  }
+}
+  .ola-facet-checkbox-selected {
+    &:before {
+      @extend .iconfont;
+      content: 'keyboard_arrow_left';
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 12px;
+      margin-top: 1px;
+      width: 0;
+    }
+  }
+  .ola-facet-checkbox-selected-heading {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .ola-facet-list > .ola-facet-scroll-list > .ola-facet-h-group > .ola-facet-h-group-inner,
+  .ola-facet-list > .ola-facet-h-group > .ola-facet-h-group-inner{
+    padding-left: 0;
+  }
+
+
+  /**
+   * Not rollup
+   */
+  .ola-facet-not-rollup {
+    .ola-facet-h-group-inner .ola-checkbox-active{
+      &:before{
+        display: none;
+      }
+    }
+  }
+
+/**
+ * Filter
+ */
+
+.ola-facet-filter-input {
+  // border-width: 0 0 1px 0;
+  // background-color: transparent;
+  border-radius: 0;
+  // padding-left: 0;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+
+
+.ola-facet-tag {
+  position: relative;
+}
