@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+// var { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
 
 module.exports = {
   entry: [
@@ -8,54 +9,67 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'demo'),
-    filename: 'olasearch.config.min.js'
+    filename: 'olasearch.init.min.js'
   },
   plugins: [
-    new ExtractTextPlugin('./assets/styles/ola.core.min.css', { allChunks: true }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new WebpackBundleSizeAnalyzerPlugin('./size.txt'),
+    new ExtractTextPlugin({
+      filename: './assets/styles/ola.core.min.css',
+      disable: false,
+      allChunks: true
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
+        // 'NODE_ENV': JSON.stringify('production'),
         'OLA_ENV': JSON.stringify('production')
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
-      },
-      comments: false
+      }
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.BannerPlugin("Copyright Ola Search Pte Ltd 2016", { raw: false, entryOnly: true })
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    }),
+    new webpack.BannerPlugin({ banner: "Copyright Ola Search Pte Ltd 2017", raw: false, entryOnly: true }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
+    rules: [{
+      test: /\.js?/,
+      use: ['babel-loader'],
+      exclude: /node_modules/,
+      include: [
+        path.join(__dirname, 'src'),
+      ],
     },
-      { test: require.resolve("react"), loader: "expose?React" },
-      {
-        test: /(\.scss|\.css)$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css!sass')
-      }
+    {
+      test: /(\.scss|\.css)$/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader']
+      })
+    }
     ]
   },
   resolve: {
     alias: {
-      'olasearch': path.join(__dirname, './../npm-olasearch'),
-      'olasearch-solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
-      'olasearch-logger-middleware': path.join(__dirname, './../olasearch-logger-middleware'),
-      'react-line-progress': path.join(__dirname, './../react-line-progress')
+      'olasearch/src': path.join(__dirname, './../npm-olasearch/src'),
+      'react': path.join(__dirname, './node_modules/react'),
+      'react-dom': path.join(__dirname, './node_modules/react-dom')
     },
-    fallback: path.resolve(__dirname, './node_modules')
+    modules: [
+      'node_modules', path.resolve(__dirname, './node_modules')
+    ]
   },
   externals: {
+    'olasearchconfig': 'OlaSearchConfig',
     "react": "React",
     "react-dom": "ReactDOM",
     "olasearch": "OlaSearch",
     "redux": "Redux",
-    "react-redux": "ReactRedux",
-    'olasearchconfig': 'OlaSearchConfig'
+    "react-redux": "ReactRedux"
   }
-};
+}

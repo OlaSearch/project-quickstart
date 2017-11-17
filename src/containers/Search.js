@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ProgressBar from 'react-line-progress'
 import classNames from 'classnames'
+import PropTypes from 'prop-types'
 import {
   Actions,
   AutoComplete,
@@ -13,24 +14,15 @@ import {
   SearchTitle,
   NoResults,
   SpellSuggestion,
-  TermSuggestion
-} from 'olasearch'
-import EscalationForm from 'olasearch/lib/components/EscalationForm'
-import Answer from 'olasearch/lib/components/Answer'
-import propEq from 'ramda/src/propEq'
-import find from 'ramda/src/find'
+  TermSuggestion,
+  Sidebar,
+  FilterButton
+} from 'olasearch';
 
 class Search extends React.Component{
-  constructor (props) {
-    super (props)
-    this.state = {
-      isSidebarOpen: false
-    }
-  }
-  toggleSidebar = () => {
-    this.setState({
-      isSidebarOpen: !this.state.isSidebarOpen
-    })
+  toggleSidebar = (event) => {
+    event && event.preventDefault()
+    return this.props.dispatch(Actions.Ui.toggleSidebar())
   };
   componentDidMount(){
     this.props.dispatch( Actions.Search.initSearch( { config: this.context.config }) )
@@ -55,7 +47,8 @@ class Search extends React.Component{
       totalResults,
       error,
       answer,
-      isLoadingAnswer
+      isLoadingAnswer,
+      isSidebarOpen
     } = AppState;
 
     var {
@@ -65,6 +58,7 @@ class Search extends React.Component{
       per_page,
       sort,
       referrer,
+      isSearchActive,
     } = QueryState;
 
     var {
@@ -72,104 +66,98 @@ class Search extends React.Component{
       isTablet
     } = Device;
 
-    var { isSidebarOpen } = this.state
     let modalKlass = classNames('ola-modal-background', {
       'ola-modal-show': isSidebarOpen,
       'ola-modal-hide': !isSidebarOpen
     })
-    let ola_collection = find(propEq('name', 'ola_collection_name'))(facet_query)
-    let ola_collection_name = ola_collection ? ola_collection.selected[0] : undefined
-    let containerKlass = classNames('ola-container', `ola-collection-${ola_collection_name}`, {
+
+    let resultsKlass = classNames('ola-results-flex', {
       'ola-sidebar-open': isSidebarOpen
     })
 
     return (
-      <div className={containerKlass}>
-        <div className={modalKlass}  onClick={this.toggleSidebar} />
-        <div className='ola-results-flex'>
+      <div className='ola-container'>
+        <div className={modalKlass} onClick={this.toggleSidebar} />
+        <AutoComplete
+            q={q}
+            onSelect={(suggestion) => {
+              if (suggestion.type === 'entity' && !suggestion.taxo_term) {
+                  /* Only for countries */
+                  this.props.dispatch(Actions.Search.removeAllFacets())
+                  this.props.dispatch(Actions.Search.updateQueryTerm(suggestion.term))
+              }
+            }}
+        />
 
-          <div className="ola-sidebar">
+        <SelectedFilters
+            facets = {facet_query}
+            dispatch = {dispatch}
+            referrer = {referrer}
+            grouped={false}
+        />
+
+        <div className={resultsKlass}>
+          <Sidebar>
             <SearchFilters
               facets = {facets}
               selected = {facet_query}
               dispatch = {dispatch}
             />
-          </div>
-
+          </Sidebar>
           <div className="ola-results-container">
-            <h1 className='page-title'>Search</h1>
-
-            <AutoComplete
-              q={q}
-              categoryGroup='sm_field_subjectsdollarname'
-              searchOnSelect
-            />
-
             <ProgressBar
               percent={isLoading || isLoadingAnswer ? 40 : 100}
               autoIncrement
               spinner={false}
             />
 
-            <SelectedFilters
-              facets = {facet_query}
-              dispatch = {dispatch}
-              referrer = {referrer}
-              grouped={false}
+            <FilterButton
+              facets={facets}
             />
-
-            <button className='ola-link-open-filter' onClick={this.toggleSidebar} />
 
             <SearchTitle
               totalResults={totalResults}
               page={page}
               perPage={per_page}
+              isLoading={isLoading}
+              isPhone={isPhone}
             />
 
             <TermSuggestion
               term={suggestedTerm}
               q={q}
+              totalResults={totalResults}
               answer={answer}
             />
 
             <SpellSuggestion
               suggestions={spellSuggestions}
               totalResults={totalResults}
-              dispatch={dispatch}
-            />
-
-            <Answer
-              answer={answer}
-              isLoading={isLoadingAnswer}
+              dispatch={this.props.dispatch}
             />
 
             <SearchResults
-              results={this.props.AppState.results}
-              bookmarks={this.props.AppState.bookmarks}
-              dispatch={this.props.dispatch}
+              results = { this.props.AppState.results }
+              bookmarks = { this.props.AppState.bookmarks }
+              dispatch = {this.props.dispatch}
             />
 
             <NoResults
               q={q}
               isLoading={isLoading}
-              results={this.props.AppState.results}
+              suggestedTerm={suggestedTerm}
+              facets={facet_query}
+              totalResults={totalResults}
+              dispatch={dispatch}
             />
 
-            <EscalationForm
-              visible={!isLoading && !results.length && q}
-              onSubmit={(event) => event.preventDefault()}
-            >
-              <a href='https://www.adb.org/contact'>
-                <abbr className="ico ico-envelope-o" title="Email" /> Send us a message
-              </a>
-            </EscalationForm>
-
             <SearchFooter
-              totalResults={totalResults}
-              currentPage={page}
-              perPage={per_page}
-              dispatch={dispatch}
-              isPhone={isPhone}
+              totalResults = {totalResults}
+              currentPage = {page}
+              perPage = {per_page}
+              dispatch = { dispatch }
+              isPhone = { isPhone }
+              isLoading={isLoading}
             />
           </div>
 
@@ -180,7 +168,7 @@ class Search extends React.Component{
 }
 
 Search.contextTypes = {
-  config: React.PropTypes.object
+  config: PropTypes.object
 };
 
 function mapStateToProps( state ){
@@ -191,4 +179,4 @@ function mapStateToProps( state ){
   }
 }
 
-export default connect(mapStateToProps)(Decorators.OlaRoute(Search))
+export default connect( mapStateToProps ) ( Decorators.OlaRoute(Search) )

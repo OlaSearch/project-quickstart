@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'OLA_ENV': JSON.stringify('staging')
@@ -29,23 +29,32 @@ module.exports = {
       'olasearch-solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
       'olasearch-logger-middleware': path.join(__dirname, './../olasearch-logger-middleware'),
       'react': path.join(__dirname, './node_modules/react'),
+      'react-dom': path.join(__dirname, './node_modules/react-dom'),
       'react-line-progress': path.join(__dirname, './../react-line-progress'),
       'olasearchconfig': path.join(__dirname, './src/config')
     },
-    fallback: path.resolve(__dirname, './node_modules')
+    modules: [
+      'node_modules', path.resolve(__dirname, './node_modules')
+    ]
+    // fallback: path.resolve(__dirname, './node_modules')
   },
-  resolveLoader: {
-      fallback: path.resolve(__dirname, './node_modules')
+  externals: {
+    moment: 'moment'
   },
   module: {
-    loaders: [{
-      test: /\.jsx?/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
+    rules: [{
+      test: /\.js?/,
+      use: ['babel-loader'],
+      exclude: /node_modules/,
+      include: [
+        path.join(__dirname, './'),
+        path.join(__dirname, './../src')
+      ],
     },
     {
       test: /(\.scss|\.css)$/,
-      loader: 'style!css!sass'
-    }]
+      use: ['style-loader', 'css-loader', 'sass-loader']
+    }
+    ]
   }
 };

@@ -6,9 +6,11 @@ import config from 'olasearchconfig'
 import thunk from 'redux-thunk'
 import { createLoggerMiddleware } from 'olasearch-logger-middleware'
 import { AutoSuggest, OlaProvider, createStore } from 'olasearch'
-import translations from './translations'
 
+require('olasearch/src/style/core.scss')
 require('./styles/main.scss')
+
+config.showSuggestionHelp = true
 
 var _root = document.getElementById('ola-serp')
 var _autosuggest = document.getElementById('ola-autosuggest')
@@ -20,7 +22,7 @@ let store = createStore(config, { Parser, QueryBuilder, Http }, {}, [loggerMiddl
 
 if(_root){
   ReactDOM.render(
-    <OlaProvider config={config} store={store} translations={translations}>
+    <OlaProvider config={config} store={store}>
       <SearchContainer />
     </OlaProvider>
     , _root
@@ -29,7 +31,7 @@ if(_root){
 
 if(_autosuggest){
   ReactDOM.render(
-    <OlaProvider config={config} store={store} translations={translations}>
+    <OlaProvider config={config} store={store}>
       <AutoComplete
         scrollOnFocus={false}
         forceRedirect
