@@ -17,7 +17,7 @@ import {
   TermSuggestion,
   Sidebar,
   FilterButton
-} from 'olasearch';
+} from '@olasearch/core';
 
 class Search extends React.Component{
   toggleSidebar = (event) => {
@@ -79,14 +79,7 @@ class Search extends React.Component{
       <div className='ola-container'>
         <div className={modalKlass} onClick={this.toggleSidebar} />
         <AutoComplete
-            q={q}
-            onSelect={(suggestion) => {
-              if (suggestion.type === 'entity' && !suggestion.taxo_term) {
-                  /* Only for countries */
-                  this.props.dispatch(Actions.Search.removeAllFacets())
-                  this.props.dispatch(Actions.Search.updateQueryTerm(suggestion.term))
-              }
-            }}
+          q={q}
         />
 
         <SelectedFilters
@@ -97,6 +90,7 @@ class Search extends React.Component{
         />
 
         <div className={resultsKlass}>
+          
           <Sidebar>
             <SearchFilters
               facets = {facets}
@@ -104,6 +98,7 @@ class Search extends React.Component{
               dispatch = {dispatch}
             />
           </Sidebar>
+
           <div className="ola-results-container">
             <ProgressBar
               percent={isLoading || isLoadingAnswer ? 40 : 100}
@@ -179,4 +174,4 @@ function mapStateToProps( state ){
   }
 }
 
-export default connect( mapStateToProps ) ( Decorators.OlaRoute(Search) )
+export default connect( mapStateToProps ) ( Decorators.withRoute(Search) )

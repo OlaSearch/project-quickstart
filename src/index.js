@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Parser, QueryBuilder, Http } from 'olasearch-solr-adapter'
-import SearchContainer from './containers/Search'
+import { Parser, QueryBuilder, Http } from '@olasearch/solr-adapter'
+import Search from './containers/Search'
 import config from 'olasearchconfig'
 import thunk from 'redux-thunk'
-import { createLoggerMiddleware } from 'olasearch-logger-middleware'
-import { AutoSuggest, OlaProvider, createStore } from 'olasearch'
+import { createLoggerMiddleware } from '@olasearch/logger'
+import { AutoSuggest, OlaProvider, createStore } from '@olasearch/core'
 
-require('olasearch/src/style/core.scss')
-require('./styles/main.scss')
+require('@olasearch/core/src/style/core.scss')
+require('./style/main.scss')
 
 config.showSuggestionHelp = true
 
@@ -23,7 +23,7 @@ let store = createStore(config, { Parser, QueryBuilder, Http }, {}, [loggerMiddl
 if(_root){
   ReactDOM.render(
     <OlaProvider config={config} store={store}>
-      <SearchContainer />
+      <Search />
     </OlaProvider>
     , _root
   )

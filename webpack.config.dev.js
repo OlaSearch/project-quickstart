@@ -24,10 +24,10 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'olasearch': path.join(__dirname, './../npm-olasearch'),
-      'olasearch-elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
-      'olasearch-solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
-      'olasearch-logger-middleware': path.join(__dirname, './../olasearch-logger-middleware'),
+      '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
+      '@olasearch/elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
+      '@olasearch/solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
+      '@olasearch/logger': path.join(__dirname, './../olasearch-logger-middleware'),
       'react': path.join(__dirname, './node_modules/react'),
       'react-dom': path.join(__dirname, './node_modules/react-dom'),
       'react-line-progress': path.join(__dirname, './../react-line-progress'),

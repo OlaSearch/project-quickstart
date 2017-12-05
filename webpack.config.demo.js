@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-// var { WebpackBundleSizeAnalyzerPlugin } = require('webpack-bundle-size-analyzer')
 
 module.exports = {
   entry: [
@@ -12,7 +11,6 @@ module.exports = {
     filename: 'olasearch.init.min.js'
   },
   plugins: [
-    // new WebpackBundleSizeAnalyzerPlugin('./size.txt'),
     new ExtractTextPlugin({
       filename: './assets/styles/ola.core.min.css',
       disable: false,
@@ -21,7 +19,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        // 'NODE_ENV': JSON.stringify('production'),
+        'NODE_ENV': JSON.stringify('production'),
         'OLA_ENV': JSON.stringify('production')
       }
     }),
@@ -56,7 +54,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'olasearch/src': path.join(__dirname, './../npm-olasearch/src'),
+      '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
       'react': path.join(__dirname, './node_modules/react'),
       'react-dom': path.join(__dirname, './node_modules/react-dom')
     },
@@ -68,7 +66,7 @@ module.exports = {
     'olasearchconfig': 'OlaSearchConfig',
     "react": "React",
     "react-dom": "ReactDOM",
-    "olasearch": "OlaSearch",
+    "@olasearch/core": "OlaSearch",
     "redux": "Redux",
     "react-redux": "ReactRedux"
   }
