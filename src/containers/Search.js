@@ -1,7 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ProgressBar from 'react-line-progress'
-import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {
   Actions,
@@ -16,14 +14,17 @@ import {
   SpellSuggestion,
   TermSuggestion,
   Sidebar,
-  FilterButton
+  FilterButton,
+  Error,
+  SearchBar,
+  ContentWrapper,
+  SearchContent,
+  ProgressBar,
+  AnswerToken,
+  Answer,
 } from '@olasearch/core';
 
 class Search extends React.Component{
-  toggleSidebar = (event) => {
-    event && event.preventDefault()
-    return this.props.dispatch(Actions.Ui.toggleSidebar())
-  };
   componentDidMount(){
     this.props.dispatch( Actions.Search.initSearch( { config: this.context.config }) )
   }
@@ -47,6 +48,7 @@ class Search extends React.Component{
       totalResults,
       error,
       answer,
+      mc,
       isLoadingAnswer,
       isSidebarOpen
     } = AppState;
@@ -66,31 +68,27 @@ class Search extends React.Component{
       isTablet
     } = Device;
 
-    let modalKlass = classNames('ola-modal-background', {
-      'ola-modal-show': isSidebarOpen,
-      'ola-modal-hide': !isSidebarOpen
-    })
-
-    let resultsKlass = classNames('ola-results-flex', {
-      'ola-sidebar-open': isSidebarOpen
-    })
-
     return (
-      <div className='ola-container'>
-        <div className={modalKlass} onClick={this.toggleSidebar} />
-        <AutoComplete
+      <div>
+        <SearchBar
           q={q}
+          showAlert
+          showHelp
+          wordSuggestion
+          refreshOnGeoChange
         />
 
         <SelectedFilters
-            facets = {facet_query}
-            dispatch = {dispatch}
-            referrer = {referrer}
-            grouped={false}
+          facets = {facet_query}
+          dispatch = {dispatch}
+          referrer = {referrer}
+          grouped={false}
         />
 
-        <div className={resultsKlass}>
-          
+        <AnswerToken
+        />
+
+        <ContentWrapper>          
           <Sidebar>
             <SearchFilters
               facets = {facets}
@@ -99,16 +97,17 @@ class Search extends React.Component{
             />
           </Sidebar>
 
-          <div className="ola-results-container">
-            <ProgressBar
-              percent={isLoading || isLoadingAnswer ? 40 : 100}
-              autoIncrement
-              spinner={false}
+          <SearchContent>
+
+            <FilterButton />
+
+            <Answer
+              answer={answer}
+              mc={mc}
+              isLoading={isLoadingAnswer}
             />
 
-            <FilterButton
-              facets={facets}
-            />
+            <ProgressBar />
 
             <SearchTitle
               totalResults={totalResults}
@@ -130,6 +129,8 @@ class Search extends React.Component{
               totalResults={totalResults}
               dispatch={this.props.dispatch}
             />
+
+            <Error error={error} />
 
             <SearchResults
               results = { this.props.AppState.results }
@@ -154,9 +155,9 @@ class Search extends React.Component{
               isPhone = { isPhone }
               isLoading={isLoading}
             />
-          </div>
+          </SearchContent>
+        </ContentWrapper>
 
-        </div>
       </div>
     )
   }

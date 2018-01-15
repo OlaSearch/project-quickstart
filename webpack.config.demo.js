@@ -12,7 +12,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: './assets/styles/ola.core.min.css',
+      filename: './../../npm-olasearch/dist/olasearch.core.min.css',
       disable: false,
       allChunks: true
     }),
@@ -54,9 +54,15 @@ module.exports = {
   },
   resolve: {
     alias: {
+      'OlaSearch': path.join(__dirname, './../npm-olasearch'),
       '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
+      '@olasearch/elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
+      '@olasearch/solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
+      '@olasearch/logger': path.join(__dirname, './../olasearch-logger-middleware'),
       'react': path.join(__dirname, './node_modules/react'),
-      'react-dom': path.join(__dirname, './node_modules/react-dom')
+      'react-dom': path.join(__dirname, './node_modules/react-dom'),
+      'react-line-progress': path.join(__dirname, './../react-line-progress'),
+      'olasearchconfig': path.join(__dirname, './src/config')
     },
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')

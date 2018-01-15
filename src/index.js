@@ -5,31 +5,40 @@ import Search from './containers/Search'
 import config from 'olasearchconfig'
 import thunk from 'redux-thunk'
 import { createLoggerMiddleware } from '@olasearch/logger'
-import { AutoSuggest, OlaProvider, createStore } from '@olasearch/core'
+import { AutoComplete, OlaProvider, createStore } from '@olasearch/core'
+import { ChatReducer, BotFrame, Bot, ChatActions } from '@olasearch/chat'
 
 require('@olasearch/core/src/style/core.scss')
-require('./style/main.scss')
+require('@olasearch/chat/style/chat.scss')
 
-config.showSuggestionHelp = true
+const ola_serp = document.getElementById('ola-serp')
+const ola_autosuggest = document.getElementById('ola-autosuggest')
+const ola_chatbot = document.getElementById('ola-chatbot')
+const css_url = !process.env.OLA_ENV || process.env.OLA_ENV === 'staging' ? '/olachat.min.css' : `https://cdn.olasearch.com/assets/css/olasearch.core.min.css`
 
-var _root = document.getElementById('ola-serp')
-var _autosuggest = document.getElementById('ola-autosuggest')
+
+// config.proxy = config.intentEngineEnabled = false
+// config.ajaxOptions.method = 'GET'
 
 /* Optional loggerMiddleware */
 let loggerMiddleware = createLoggerMiddleware({ logger: config.logger })
-/* Store */
-let store = createStore(config, { Parser, QueryBuilder, Http }, {}, [loggerMiddleware])
 
-if(_root){
+/* Store */
+let store = createStore(config, { Parser, QueryBuilder, Http }, { Conversation: ChatReducer }, [loggerMiddleware])
+
+// Dummy: remove after testing
+store.dispatch(ChatActions.setBotStatus(true))
+
+if(ola_serp){
   ReactDOM.render(
     <OlaProvider config={config} store={store}>
       <Search />
     </OlaProvider>
-    , _root
+    , ola_serp
   )
 }
 
-if(_autosuggest){
+if(ola_autosuggest){
   ReactDOM.render(
     <OlaProvider config={config} store={store}>
       <AutoComplete
@@ -37,6 +46,37 @@ if(_autosuggest){
         forceRedirect
       />
     </OlaProvider>
-    , _autosuggest
+    , ola_autosuggest
+  )
+}
+
+if (ola_chatbot) {
+  ReactDOM.render(
+    <OlaProvider config={config} store={store} className='ola-chatbot'>
+      <Bot
+        initialIntent={config.initialIntent}
+        headerProps={{
+          title: config.chatbotTitle
+        }}
+        avatarProps={{
+          avatarBot: config.botAvatar,
+          avatarUser: config.userAvatar,
+        }}
+        bubbleProps={{
+          label: config.chatbotBubbleLabel
+        }}
+        botProps={{
+          botName: config.botName,
+          userName: 'You'
+        }}
+        head={
+          <div>
+            <link rel='stylesheet' href={css_url} />
+            <meta name='viewport' content='width=device-width, initial-scale=1' />
+          </div>
+        }
+      />
+    </OlaProvider>
+    , ola_chatbot
   )
 }
