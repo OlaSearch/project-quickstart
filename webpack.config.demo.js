@@ -7,7 +7,7 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, 'demo'),
+    path: path.join(__dirname, '..', 'npm-olasearch/dist'),
     filename: 'olasearch.init.min.js'
   },
   plugins: [
@@ -41,6 +41,7 @@ module.exports = {
       exclude: /node_modules/,
       include: [
         path.join(__dirname, 'src'),
+        path.join(__dirname, './../olachat/src')
       ],
     },
     {
@@ -56,13 +57,15 @@ module.exports = {
     alias: {
       'OlaSearch': path.join(__dirname, './../npm-olasearch'),
       '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
+      '@olasearch/chat': path.resolve(__dirname, './../olachat/src'),
+      '@olasearch/icons': path.resolve(__dirname, './../ola-icons'),
       '@olasearch/elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
       '@olasearch/solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
       '@olasearch/logger': path.join(__dirname, './../olasearch-logger-middleware'),
       'react': path.join(__dirname, './node_modules/react'),
       'react-dom': path.join(__dirname, './node_modules/react-dom'),
       'react-line-progress': path.join(__dirname, './../react-line-progress'),
-      'olasearchconfig': path.join(__dirname, './src/config')
+      'olasearchconfig': path.join(__dirname, './src/config.smb')
     },
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')

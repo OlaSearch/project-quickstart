@@ -24,6 +24,8 @@ import {
   Answer,
 } from '@olasearch/core';
 
+// require('@olasearch/core/src/style/core.scss');
+
 class Search extends React.Component{
   componentDidMount(){
     this.props.dispatch( Actions.Search.initSearch( { config: this.context.config }) )

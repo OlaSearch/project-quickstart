@@ -31,11 +31,13 @@ module.exports = {
       '@olasearch/elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
       '@olasearch/solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
       '@olasearch/logger': path.join(__dirname, './../olasearch-logger-middleware'),
+      '@olasearch/textarea-elastic': path.join(__dirname, './../textarea-elastic'),
+      'react-onclickoutside': path.join(__dirname, './../../react-onclickoutside'),
       'react': path.join(__dirname, './node_modules/react'),
       'React': path.join(__dirname, './node_modules/react'),
       'react-dom': path.join(__dirname, './node_modules/react-dom'),
       'react-line-progress': path.join(__dirname, './../react-line-progress'),
-      'olasearchconfig': path.join(__dirname, './src/config')
+      'olasearchconfig': path.join(__dirname, './src/config.smb')
     },
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')
