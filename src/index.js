@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Parser, QueryBuilder, Http } from '@olasearch/solr-adapter'
-import Search from './containers/SearchDemo'
+import Search from './containers/Search'
 import config from 'olasearchconfig'
 import thunk from 'redux-thunk'
 import { createLoggerMiddleware } from '@olasearch/logger'
@@ -9,6 +9,7 @@ import { AutoComplete, OlaProvider, createStore } from '@olasearch/core'
 import { ChatReducer, BotFrame, Bot, ChatActions, persistMiddleware, notificationMiddleware } from '@olasearch/chat'
 
 
+// require('./styles/demo.scss')
 require('@olasearch/core/src/style/core.scss')
 require('@olasearch/chat/style/chat.scss')
 
@@ -42,7 +43,7 @@ let store = createStore(config,
 )
 
 // Dummy: remove after testing
-store.dispatch(ChatActions.setBotStatus(true))
+// store.dispatch(ChatActions.setBotStatus(true))
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const {whyDidYouUpdate} = require('why-did-you-update')

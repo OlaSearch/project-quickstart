@@ -65,7 +65,7 @@ module.exports = {
       'react': path.join(__dirname, './node_modules/react'),
       'react-dom': path.join(__dirname, './node_modules/react-dom'),
       'react-line-progress': path.join(__dirname, './../react-line-progress'),
-      'olasearchconfig': path.join(__dirname, './src/config.smb')
+      'olasearchconfig': path.join(__dirname, './src/config')
     },
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')
