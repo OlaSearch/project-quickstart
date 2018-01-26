@@ -48,7 +48,12 @@ module.exports = {
       test: /(\.scss|\.css)$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'sass-loader']
+        use: ['css-loader', {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [require('autoprefixer')]
+          }
+        }, 'sass-loader']
       })
     }
     ]

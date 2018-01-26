@@ -101,8 +101,6 @@ class Search extends React.Component{
 
           <SearchContent>
 
-            <FilterButton />
-
             <Answer
               answer={answer}
               mc={mc}
@@ -110,6 +108,8 @@ class Search extends React.Component{
             />
 
             <ProgressBar />
+
+            <FilterButton />
 
             <SearchTitle
               totalResults={totalResults}

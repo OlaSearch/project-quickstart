@@ -6,7 +6,7 @@ import config from 'olasearchconfig'
 import thunk from 'redux-thunk'
 import { createLoggerMiddleware } from '@olasearch/logger'
 import { AutoComplete, OlaProvider, createStore } from '@olasearch/core'
-import { ChatReducer, BotFrame, Bot, ChatActions, persistMiddleware, notificationMiddleware } from '@olasearch/chat'
+import { ChatReducer, BotFrame, Bot, ChatActions, persistMiddleware, notificationMiddleware, translations as chatTranslations } from '@olasearch/chat'
 
 
 // require('./styles/demo.scss')
@@ -21,7 +21,6 @@ const css_url = !process.env.OLA_ENV || process.env.OLA_ENV === 'staging' ? '/de
 
 // config.proxy = config.intentEngineEnabled = false
 // config.ajaxOptions.method = 'POST'
-config.projectName = 'Ola News Demo (Wordpress)'
 
 /* Optional loggerMiddleware */
 let loggerMiddleware = createLoggerMiddleware({ logger: config.logger })
@@ -29,7 +28,8 @@ let loggerMiddleware = createLoggerMiddleware({ logger: config.logger })
 /* Chat persist middleware */
 let chatPersistMiddleware = persistMiddleware({ namespace: config.namespace })
 
-let chatNotification = notificationMiddleware({ name: config.projectName })
+/* Push notification middleware */
+let chatNotification = notificationMiddleware({ name: config.projectName, icon: config.botAvatar })
 
 /* Store */
 let store = createStore(config,
@@ -73,8 +73,9 @@ if(ola_autosuggest){
 
 if (ola_chatbot) {
   ReactDOM.render(
-    <OlaProvider config={config} store={store} className='ola-chatbot'>
+    <OlaProvider config={config} store={store} translations={chatTranslations}>
       <BotFrame
+        startOver
         initialIntent={config.initialIntent}
         headerProps={{
           title: config.chatbotTitle
