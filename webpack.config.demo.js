@@ -62,7 +62,7 @@ module.exports = {
     alias: {
       'OlaSearch': path.join(__dirname, './../npm-olasearch'),
       '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
-      '@olasearch/chat': path.resolve(__dirname, './../olachat/src'),
+      '@olasearch/chat': path.resolve(__dirname, './../olachat'),
       '@olasearch/icons': path.resolve(__dirname, './../ola-icons'),
       '@olasearch/elasticsearch-adapter': path.join(__dirname, './../npm-olasearch-elasticsearch-adapter'),
       '@olasearch/solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
