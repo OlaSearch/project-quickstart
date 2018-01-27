@@ -10,7 +10,7 @@ import { ChatReducer, BotFrame, Bot, ChatActions, persistMiddleware, notificatio
 
 
 // require('./styles/demo.scss')
-require('@olasearch/core/src/style/core.scss')
+require('@olasearch/core/style/core.scss')
 require('@olasearch/chat/style/chat.scss')
 
 const ola_serp = document.getElementById('ola-serp')
@@ -74,7 +74,7 @@ if(ola_autosuggest){
 if (ola_chatbot) {
   ReactDOM.render(
     <OlaProvider config={config} store={store} translations={chatTranslations}>
-      <Bot
+      <BotFrame
         startOver
         initialIntent={config.initialIntent}
         headerProps={{
