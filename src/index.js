@@ -74,7 +74,7 @@ if(ola_autosuggest){
 if (ola_chatbot) {
   ReactDOM.render(
     <OlaProvider config={config} store={store} translations={chatTranslations}>
-      <BotFrame
+      <Bot
         startOver
         initialIntent={config.initialIntent}
         headerProps={{
@@ -91,12 +91,7 @@ if (ola_chatbot) {
           botName: config.botName,
           userName: 'You'
         }}
-        head={
-          <div>
-            <link rel='stylesheet' href={css_url} />
-            <meta name='viewport' content='width=device-width, initial-scale=1' />
-          </div>
-        }
+        cssUrl={css_url}
       />
     </OlaProvider>
     , ola_chatbot

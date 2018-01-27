@@ -57,6 +57,7 @@
     "why-did-you-update": "^0.1.0"
   },
   "dependencies": {
+    "@olasearch/chat": "^2.0.1",
     "@olasearch/core": "git+ssh://git@gitlab.com/olasearch/olasearch-core.git",
     "@olasearch/elasticsearch-adapter": "^1.0.9",
     "@olasearch/logger": "^1.2.0",
