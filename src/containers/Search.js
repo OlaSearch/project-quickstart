@@ -15,7 +15,7 @@ import {
   TermSuggestion,
   Sidebar,
   FilterButton,
-  Error,
+  ErrorMessage,
   SearchBar,
   ContentWrapper,
   SearchContent,
@@ -23,8 +23,6 @@ import {
   AnswerToken,
   Answer,
 } from '@olasearch/core';
-
-// require('@olasearch/core/src/style/core.scss');
 
 class Search extends React.Component{
   componentDidMount(){
@@ -119,12 +117,7 @@ class Search extends React.Component{
               isPhone={isPhone}
             />
 
-            <TermSuggestion
-              term={suggestedTerm}
-              q={q}
-              totalResults={totalResults}
-              answer={answer}
-            />
+            <TermSuggestion />
 
             <SpellSuggestion
               suggestions={spellSuggestions}
@@ -132,7 +125,7 @@ class Search extends React.Component{
               dispatch={this.props.dispatch}
             />
 
-            <Error error={error} />
+            <ErrorMessage error={error} />
 
             <SearchResults
               results = { this.props.AppState.results }
