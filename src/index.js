@@ -5,7 +5,7 @@ import Search from './containers/Search'
 import config from 'olasearchconfig'
 import thunk from 'redux-thunk'
 import { createLoggerMiddleware } from '@olasearch/logger'
-import { AutoComplete, OlaProvider, createStore } from '@olasearch/core'
+import { AutoComplete, OlaProvider, createStore, Actions } from '@olasearch/core'
 import { ChatReducer, BotFrame, Bot, ChatActions, persistMiddleware, notificationMiddleware, translations as chatTranslations } from '@olasearch/chat'
 
 // require('./styles/demo.scss')
@@ -19,9 +19,9 @@ const css_url = !process.env.OLA_ENV || process.env.OLA_ENV === 'staging'
   ? '/demo/olasearch.core.min.css'
   : `https://cdn.olasearch.com/assets/css/olasearch.core.min.css?version=${(new Date()).getTime()}`
 
-
+// config.fieldLabels.schema_org_startEndDate_dr = 'Start date'
 // config.proxy = config.intentEngineEnabled = false
-// config.ajaxOptions.method = 'POST'
+// config.ajaxOptions.method = 'GET'
 
 /* Optional loggerMiddleware */
 let loggerMiddleware = createLoggerMiddleware({ logger: config.logger })
@@ -45,6 +45,7 @@ let store = createStore(config,
 
 // Dummy: remove after testing
 // store.dispatch(ChatActions.setBotStatus(true))
+// store.dispatch(Actions.Search.changePerPage(3))
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const {whyDidYouUpdate} = require('why-did-you-update')
@@ -76,7 +77,6 @@ if (ola_chatbot) {
   ReactDOM.render(
     <OlaProvider config={config} store={store} translations={chatTranslations}>
       <BotFrame
-        startOver
         initialIntent={config.initialIntent}
         headerProps={{
           title: config.chatbotTitle

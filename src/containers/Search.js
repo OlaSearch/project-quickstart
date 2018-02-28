@@ -22,6 +22,7 @@ import {
   ProgressBar,
   AnswerToken,
   Answer,
+  Sort,
 } from '@olasearch/core';
 
 class Search extends React.Component{
@@ -50,7 +51,8 @@ class Search extends React.Component{
       answer,
       mc,
       isLoadingAnswer,
-      isSidebarOpen
+      isSidebarOpen,
+      filterInAutoComplete,
     } = AppState;
 
     var {
@@ -58,7 +60,6 @@ class Search extends React.Component{
       facet_query,
       page,
       per_page,
-      sort,
       referrer,
       isSearchActive,
     } = QueryState;
@@ -68,14 +69,14 @@ class Search extends React.Component{
       isTablet
     } = Device;
 
+
     return (
       <div>
         <SearchBar
           q={q}
-          showAlert
+          showAlert={false}
           showHelp
-          wordSuggestion
-          refreshOnGeoChange
+          wordSuggestion={filterInAutoComplete}
         />
 
         <SelectedFilters
@@ -88,7 +89,7 @@ class Search extends React.Component{
         <AnswerToken
         />
 
-        <ContentWrapper>          
+        <ContentWrapper>
           <Sidebar>
             <SearchFilters
               facets = {facets}
@@ -99,15 +100,9 @@ class Search extends React.Component{
 
           <SearchContent>
 
-            <Answer
-              answer={answer}
-              mc={mc}
-              isLoading={isLoadingAnswer}
-            />
-
-            <ProgressBar />
-
             <FilterButton />
+
+            <Sort />
 
             <SearchTitle
               totalResults={totalResults}
@@ -115,7 +110,9 @@ class Search extends React.Component{
               perPage={per_page}
               isLoading={isLoading}
               isPhone={isPhone}
-            />
+            />            
+
+            <ProgressBar />
 
             <TermSuggestion />
 
@@ -124,6 +121,12 @@ class Search extends React.Component{
               totalResults={totalResults}
               dispatch={this.props.dispatch}
             />
+
+            <Answer
+              answer={answer}
+              mc={mc}
+              isLoading={isLoadingAnswer}
+            />          
 
             <ErrorMessage error={error} />
 

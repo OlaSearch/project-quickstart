@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
+  mode: 'production',
   entry: [
     './src/index'
   ],
@@ -23,15 +24,15 @@ module.exports = {
         'OLA_ENV': JSON.stringify('production')
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compressor: {
+    //     warnings: false
+    //   }
+    // }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
-    new webpack.BannerPlugin({ banner: "Copyright Ola Search Pte Ltd 2017", raw: false, entryOnly: true }),
+    new webpack.BannerPlugin({ banner: "Copyright Ola Search Pte Ltd.", raw: false, entryOnly: true }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
   module: {
@@ -41,7 +42,8 @@ module.exports = {
       exclude: /node_modules/,
       include: [
         path.join(__dirname, 'src'),
-        path.join(__dirname, './../olachat/src')
+        path.join(__dirname, './../olachat/src'),
+        path.join(__dirname, './../../styled-jsx/src')
       ],
     },
     {
@@ -70,7 +72,8 @@ module.exports = {
       'react': path.join(__dirname, './node_modules/react'),
       'react-dom': path.join(__dirname, './node_modules/react-dom'),
       'react-line-progress': path.join(__dirname, './../react-line-progress'),
-      'olasearchconfig': path.join(__dirname, './src/config')
+      'olasearchconfig': path.join(__dirname, './src/config'),
+      'styled-jsx': path.join(__dirname, './../../styled-jsx/src')
     },
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')
