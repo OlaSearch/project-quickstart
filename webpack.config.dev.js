@@ -27,7 +27,9 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'OlaSearch': '@olasearch/core'
+      'OlaSearch': '@olasearch/core',
+      'olasearchconfig': path.join(__dirname, './src/olasearch.config'),
+      '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
     },
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')

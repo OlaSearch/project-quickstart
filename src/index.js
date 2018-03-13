@@ -5,7 +5,7 @@ import Search from '@olasearch/core/lib/containers/Search'
 import { AutoComplete, OlaProvider, createStore, Actions } from '@olasearch/core'
 import { ChatReducer, BotFrame, persistMiddleware, notificationMiddleware, translations as chatTranslations } from '@olasearch/chat'
 import { createLoggerMiddleware } from '@olasearch/logger'
-import config from './olasearch.config'
+import config from 'olasearchconfig'
 
 /* Include any css  */
 require('@olasearch/core/style/core.scss')
