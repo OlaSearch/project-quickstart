@@ -1,30 +1,23 @@
 {
-  "name": "@olasearch/project-starter",
+  "name": "@olasearch/project-quickstart",
   "version": "1.0.0",
   "description": "Ola Search project starter kit",
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "config": "cross-env NODE_ENV=production webpack --config webpack.config.demo.js",
-    "main": "cross-env NODE_ENV=production webpack --config webpack.config.main.js",
-    "release": "cross-env NODE_ENV=production webpack --config webpack.release.js",
-    "demo": "npm run config",
-    "clientdemo": "cross-env NODE_ENV=production webpack --config webpack.config.client_demo.js",
-    "build": "npm run clean && npm run build:webpack",
-    "start": "node devServer.js",
-    "lint": "eslint src"
+    "production": "cross-env NODE_ENV=production webpack --config webpack.config.production.js",
+    "start": "node devServer.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/olasearch/olasearch-project-starter.git"
+    "url": "https://github.com/olasearch/project-quickstart.git"
   },
   "keywords": [],
-  "author": "Vinay M <vinay@olasearch.com> (http://gitlab.com/OlaSearch)",
+  "author": "Vinay M <vinay@olasearch.com> (http://github.com/OlaSearch)",
   "license": "Copyright Ola Search",
   "bugs": {
-    "url": "https://gitlab.com/olasearch/olasearch-project-starterissues"
+    "url": "https://github.com/olasearch/project-quickstart#issues"
   },
-  "homepage": "https://gitlab.com/olasearch/olasearch-project-starter",
+  "homepage": "https://github.com/olasearch/project-quickstart",
   "devDependencies": {
     "autoprefixer": "^8.0.0",
     "babel-cli": "^6.26.0",
@@ -54,15 +47,14 @@
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.9",
     "webpack-dev-middleware": "^2.0.6",
-    "webpack-hot-middleware": "^2.20.0",
-    "why-did-you-update": "^0.1.1"
+    "webpack-hot-middleware": "^2.20.0"
   },
   "dependencies": {
-    "@olasearch/chat": "^2.0.1",
-    "@olasearch/core": "git+ssh://git@gitlab.com/olasearch/olasearch-core.git",
-    "@olasearch/elasticsearch-adapter": "^1.0.9",
-    "@olasearch/logger": "^1.2.6",
-    "@olasearch/solr-adapter": "^1.6.0",
+    "@olasearch/chat": "latest",
+    "@olasearch/core": "latest",
+    "@olasearch/elasticsearch-adapter": "latest",
+    "@olasearch/logger": "latest",
+    "@olasearch/solr-adapter": "latest",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-modal": "^3.3.1",

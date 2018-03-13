@@ -1,51 +1,30 @@
-# OlaSearch Boilerplate
+# Ola Search Project starter for Search and Chatbots
 
+This is a project starter to build customized Search and Chatbot experiences using Ola Search Platform. If you do not require cusotmization, you can download the `Embed code` from Ola Search
+
+# Installation
 ````
-git clone
+git clone https://github.com/OlaSearch/project-quickstart.git
+cd project-quickstart
 npm install
 npm start
 ````
 
-## Setup instructions
+## Prerequisites
 
-1. Clone this repo and do npm install
+Download the configurations from [https://admin.olasearch.com](https://admin.olasearch.com) . The configuration files contain settings for the project, filters, snippets, relevancy boosting etc.
 
-````
-git clone git@gitlab.com:olasearch/olasearch-project-starter.git olasearch-project-starter
-cd olasearch-project-starter
-yarn install
-````
+1. Login to [https://admin.olasearch.com](https://admin.olasearch.com)
+2. Navigate to Project -> Settings
+3. Download the configuration files.
+4. Save the file as `olasearch.config.js` in the `src` director
 
-2. Clone the following repositories in the same directory level as `olasearch-project-starter`
+## Deploying to production
 
-````
-git clone git@gitlab.com:olasearch/olasearch-core.git npm-olasearch
-cd npm-olasearch
-yarn install
-
-git clone git@gitlab.com:olasearch/olachat.git olachat
-cd olachat
-yarn install
-````
-
-Directory structure
+To deploy the code in production, you will need to compile and generate compressed JS/CSS files. To do that run
 
 ````
-olasearch-project-starter
-  --
-npm-olasearch
-  --
-olachat
-  --
+npm run production
 ````
 
-3. cd to `olasearch-project-starter`
-
-````
-yarn start
-````
-
-If you see any errors, make sure
-
-1. Aliases in webpack.config.dev are pointing to the right folder
-2. Check if any npm modules needs to be installed.
+Production Javascript/CSS files will be generated in `dist` folder.
