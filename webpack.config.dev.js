@@ -20,6 +20,9 @@ module.exports = {
       'process.env': {
         'OLA_ENV': JSON.stringify('staging')
       }
+    }),
+    new webpack.ProvidePlugin({
+      'React': 'react'
     })
   ],
   resolve: {

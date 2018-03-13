@@ -27,6 +27,9 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
+    new webpack.ProvidePlugin({
+      'React': 'react'
+    }),
     new webpack.BannerPlugin({ banner: "Copyright Ola Search Pte Ltd.", raw: false, entryOnly: true }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
@@ -62,13 +65,5 @@ module.exports = {
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')
     ]
-  },
-  externals: {    
-    // "react": "React",
-    // "react-dom": "ReactDOM",    
-    // "redux": "Redux",
-    // "react-redux": "ReactRedux",
-    // "@olasearch/core": "OlaSearch",
-    // 'olasearchconfig': 'OlaSearchConfig'
   }
 }
