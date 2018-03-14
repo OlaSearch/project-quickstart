@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import { Parser, QueryBuilder, Http } from '@olasearch/solr-adapter'
 import Search from '@olasearch/core/lib/containers/Search'
 import { AutoComplete, OlaProvider, createStore, Actions } from '@olasearch/core'
@@ -37,46 +38,52 @@ let store = createStore(config,
 
 if(ola_serp){
   ReactDOM.render(
-    <OlaProvider config={config} store={store}>
-      <Search />
-    </OlaProvider>
+    <Provider store={store}>
+      <OlaProvider config={config}>
+        <Search />
+      </OlaProvider>
+    </Provider>
     , ola_serp
   )
 }
 
 if(ola_autosuggest){
   ReactDOM.render(
-    <OlaProvider config={config} store={store}>
-      <AutoComplete
-        scrollOnFocus={false}
-        forceRedirect
-      />
-    </OlaProvider>
+    <Provider store={store}>
+      <OlaProvider config={config}>
+        <AutoComplete
+          scrollOnFocus={false}
+          forceRedirect
+        />
+      </OlaProvider>
+    </Provider>
     , ola_autosuggest
   )
 }
 
 if (ola_chatbot) {
   ReactDOM.render(
-    <OlaProvider config={config} store={store} translations={chatTranslations}>
-      <BotFrame
-        initialIntent={config.initialIntent}
-        headerProps={{
-          title: config.chatbotTitle
-        }}
-        avatarProps={{
-          avatarBot: config.botAvatar,
-          avatarUser: config.userAvatar,
-        }}
-        bubbleProps={{
-          label: config.chatbotBubbleLabel
-        }}
-        botProps={{
-          botName: config.botName,
-          userName: 'You'
-        }}
-      />
-    </OlaProvider>
+    <Provider store={store}>
+      <OlaProvider config={config} translations={chatTranslations}>
+        <BotFrame
+          initialIntent={config.initialIntent}
+          headerProps={{
+            title: config.chatbotTitle
+          }}
+          avatarProps={{
+            avatarBot: config.botAvatar,
+            avatarUser: config.userAvatar,
+          }}
+          bubbleProps={{
+            label: config.chatbotBubbleLabel
+          }}
+          botProps={{
+            botName: config.botName,
+            userName: 'You'
+          }}
+        />
+      </OlaProvider>
+    </Provider>
     , ola_chatbot
   )
 }
