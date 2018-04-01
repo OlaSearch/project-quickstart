@@ -66,7 +66,10 @@ if (ola_chatbot) {
     <Provider store={store}>
       <OlaProvider config={config} translations={chatTranslations}>
         <BotFrame
+          voiceInput={config.chatBotVoice}
+          inline={config.chatBotInline}
           initialIntent={config.initialIntent}
+          startOver={config.chatBotStartOver}
           headerProps={{
             title: config.chatbotTitle
           }}
@@ -79,7 +82,7 @@ if (ola_chatbot) {
           }}
           botProps={{
             botName: config.botName,
-            userName: 'You'
+            userName: 'You',
           }}
         />
       </OlaProvider>
