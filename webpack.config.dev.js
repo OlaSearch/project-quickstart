@@ -29,7 +29,7 @@ module.exports = {
     alias: {
       'OlaSearch': '@olasearch/core',
       'olasearchconfig': path.join(__dirname, './src/olasearch.config'),
-      '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
+      // '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
     },
     modules: [
       'node_modules', path.resolve(__dirname, './node_modules')
@@ -44,11 +44,11 @@ module.exports = {
       use: ['babel-loader'],
       exclude: /node_modules/,
       include: [
-        path.join(__dirname, './'),
-        path.join(__dirname, './../src'),
-        path.join(__dirname, './../olachat/src'),
-        path.join(__dirname, './../../cxs/src'),
-        path.join(__dirname, './../../styled-jsx/src')
+        // path.join(__dirname, './'),
+        // path.join(__dirname, './../src'),
+        // path.join(__dirname, './../olachat/src'),
+        // path.join(__dirname, './../../cxs/src'),
+        // path.join(__dirname, './../../styled-jsx/src')
       ],
     },
     {
