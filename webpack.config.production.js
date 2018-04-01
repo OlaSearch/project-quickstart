@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var MiniCssExtractPlugin = require("mini-css-extract-plugin")
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
     filename: 'olasearch.init.min.js'
   },
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: 'olasearch.core.min.css',
       disable: false,
       allChunks: true
@@ -46,15 +47,17 @@ module.exports = {
     },
     {
       test: /(\.scss|\.css)$/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader', {
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader', {
           loader: 'postcss-loader',
           options: {
-            plugins: () => [require('autoprefixer')]
+            plugins: () => [
+              require('autoprefixer')({browsers: ['last 3 versions', 'iOS 9']}),
+            ]
           }
         }, 'sass-loader']
-      })
+      
     }
     ]
   },
