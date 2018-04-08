@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@olasearch/chat": "latest",
-    "@olasearch/core": "latest",
+    "@olasearch/core": "^3.0.6",
     "@olasearch/elasticsearch-adapter": "latest",
     "@olasearch/logger": "latest",
     "@olasearch/solr-adapter": "latest",
