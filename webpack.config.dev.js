@@ -44,8 +44,8 @@ module.exports = {
       use: ['babel-loader'],
       exclude: /node_modules/,
       include: [
-        // path.join(__dirname, './'),
-        // path.join(__dirname, './../src'),
+        path.join(__dirname, './'),
+        path.join(__dirname, './../src'),
         // path.join(__dirname, './../olachat/src'),
         // path.join(__dirname, './../../cxs/src'),
         // path.join(__dirname, './../../styled-jsx/src')
