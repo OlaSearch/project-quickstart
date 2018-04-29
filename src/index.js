@@ -17,16 +17,16 @@ const ola_autosuggest = document.getElementById('ola-autosuggest')
 const ola_chatbot = document.getElementById('ola-chatbot')
 
 /* Optional loggerMiddleware */
-let loggerMiddleware = createLoggerMiddleware({ logger: config.logger })
+const loggerMiddleware = createLoggerMiddleware({ logger: config.logger })
 
 /* Chat persist middleware */
-let chatPersistMiddleware = persistMiddleware({ namespace: config.namespace })
+const chatPersistMiddleware = persistMiddleware({ namespace: config.namespace })
 
 /* Push notification middleware */
-let chatNotification = notificationMiddleware({ name: config.projectName, icon: config.botAvatar })
+const chatNotification = notificationMiddleware({ name: config.projectName, icon: config.botAvatar })
 
 /* Store */
-let store = createStore(config,
+const store = createStore(config,
   { Parser, QueryBuilder, Http }, /* Search Adapter */
   { Conversation: ChatReducer }, /* Chatbot Reducer */
   [ 
