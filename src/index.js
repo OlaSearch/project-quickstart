@@ -71,14 +71,14 @@ if (ola_chatbot) {
           initialIntent={config.initialIntent}
           startOver={config.chatBotStartOver}
           headerProps={{
-            title: config.chatbotTitle
+            title: config.chatBotTitle
           }}
           avatarProps={{
             avatarBot: config.botAvatar,
             avatarUser: config.userAvatar,
           }}
           bubbleProps={{
-            label: config.chatbotBubbleLabel
+            label: config.chatBotBubbleLabel
           }}
           botProps={{
             botName: config.botName,
