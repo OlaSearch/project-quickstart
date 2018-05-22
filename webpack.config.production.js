@@ -58,6 +58,9 @@ module.exports = {
     }
     ]
   },
+  externals: {
+    moment: 'moment'
+  },
   resolve: {
     alias: {
       'OlaSearch': '@olasearch/core',
