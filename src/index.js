@@ -1,3 +1,5 @@
+// Polyfill for IE 10 and IE 11
+import polyfill from '@olasearch/core/lib/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
