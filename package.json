@@ -5,6 +5,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "production": "cross-env NODE_ENV=production webpack --config webpack.config.production.js",
+    "initfile": "cross-env NODE_ENV=production webpack --config webpack.config.initfile.js",
     "start": "node devServer.js"
   },
   "repository": {
