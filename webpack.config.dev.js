@@ -29,6 +29,7 @@ module.exports = {
     alias: {
       'OlaSearch': '@olasearch/core',
       'olasearchconfig': path.join(__dirname, './src/olasearch.config'),
+      '@olasearch/solr-adapter': path.join(__dirname, './../npm-olasearch-solr-adapter'),
       // '@olasearch/core': path.join(__dirname, './../npm-olasearch'),
     },
     modules: [
