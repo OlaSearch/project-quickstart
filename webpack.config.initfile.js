@@ -67,7 +67,8 @@ module.exports = {
     "olasearch": "OlaSearch",
     "ramda": "R",
     "redux": "Redux",
-    "react-redux": "ReactRedux"
+    "react-redux": "ReactRedux",
+    'polyfill': 'polyfill'
   },
   resolve: {
     alias: {
